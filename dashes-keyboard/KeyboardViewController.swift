@@ -27,7 +27,6 @@ class KeyboardViewController: UIInputViewController {
     @IBOutlet var nextKeyboardButton: UIButton!
     
     @IBAction func sendText(_ sender: Any) {
-        // print(lastWordTyped!)
         (textDocumentProxy as UIKeyInput).insertText(" \(dashify(lastWordTyped!))")
     }
     
@@ -49,14 +48,8 @@ class KeyboardViewController: UIInputViewController {
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
-        
-        // Add custom view sizing constraints here
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("I'm here now \(lastWordTyped)")
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "IdealKeyboardView", bundle: nil)
@@ -67,17 +60,6 @@ class KeyboardViewController: UIInputViewController {
     
     override func textWillChange(_ textInput: UITextInput?) {
         // The app is about to change the document's contents. Perform any preparation here.
-    }
-    
-    func lastWordBeforeInput() -> String {
-        if let documentContext = textDocumentProxy.documentContextBeforeInput {
-            if documentContext.isEmpty == false {
-                print("NO TEXT TO BE FOUND")
-            } else {
-                print("FOUND \(documentContext.components(separatedBy: " "))")
-            }
-        }
-        return ""
     }
     
     override func textDidChange(_ textInput: UITextInput?) {
