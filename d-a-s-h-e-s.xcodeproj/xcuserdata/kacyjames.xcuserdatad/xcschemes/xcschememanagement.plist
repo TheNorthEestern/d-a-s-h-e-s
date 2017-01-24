@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>dashes-keyboard.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>AF8FF9841E35B10300392FA2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AF8FF99D1E35B13B00392FA2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

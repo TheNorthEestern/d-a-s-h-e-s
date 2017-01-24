@@ -7,14 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF5019091E35C88600F4E3B6 /* ProperKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */; };
+		AF50190A1E35CE7E00F4E3B6 /* ProperKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */; };
+		AF8A84611E36EE5200A8E54A /* IdealKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8A84601E36EE5200A8E54A /* IdealKeyboardView.xib */; };
+		AF8A84621E36EE5200A8E54A /* IdealKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8A84601E36EE5200A8E54A /* IdealKeyboardView.xib */; };
+		AF8A84641E36EF4100A8E54A /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8A84631E36EF4100A8E54A /* CircularButton.swift */; };
+		AF8A84651E36EF4100A8E54A /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8A84631E36EF4100A8E54A /* CircularButton.swift */; };
 		AF8FF9891E35B10300392FA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8FF9881E35B10300392FA2 /* AppDelegate.swift */; };
 		AF8FF98B1E35B10300392FA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8FF98A1E35B10300392FA2 /* ViewController.swift */; };
 		AF8FF98E1E35B10300392FA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF8FF98C1E35B10300392FA2 /* Main.storyboard */; };
 		AF8FF9901E35B10300392FA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF8FF98F1E35B10300392FA2 /* Assets.xcassets */; };
 		AF8FF9931E35B10300392FA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF8FF9911E35B10300392FA2 /* LaunchScreen.storyboard */; };
+		AF8FF9A11E35B13B00392FA2 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8FF9A01E35B13B00392FA2 /* KeyboardViewController.swift */; };
+		AF8FF9A51E35B13B00392FA2 /* dashes-keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AF8FF99E1E35B13B00392FA2 /* dashes-keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AF8FF9A31E35B13B00392FA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF8FF97D1E35B10300392FA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF8FF99D1E35B13B00392FA2;
+			remoteInfo = "dashes-keyboard";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AF8FF9A91E35B13B00392FA2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AF8FF9A51E35B13B00392FA2 /* dashes-keyboard.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProperKeyboard.xib; sourceTree = "<group>"; };
+		AF8A84601E36EE5200A8E54A /* IdealKeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdealKeyboardView.xib; sourceTree = "<group>"; };
+		AF8A84631E36EF4100A8E54A /* CircularButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		AF8FF9851E35B10300392FA2 /* d-a-s-h-e-s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "d-a-s-h-e-s.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF8FF9881E35B10300392FA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF8FF98A1E35B10300392FA2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,10 +57,20 @@
 		AF8FF98F1E35B10300392FA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF8FF9921E35B10300392FA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF8FF9941E35B10300392FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF8FF99E1E35B13B00392FA2 /* dashes-keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "dashes-keyboard.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF8FF9A01E35B13B00392FA2 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		AF8FF9A21E35B13B00392FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		AF8FF9821E35B10300392FA2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF8FF99B1E35B13B00392FA2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				AF8FF9871E35B10300392FA2 /* d-a-s-h-e-s */,
+				AF8FF99F1E35B13B00392FA2 /* dashes-keyboard */,
 				AF8FF9861E35B10300392FA2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				AF8FF9851E35B10300392FA2 /* d-a-s-h-e-s.app */,
+				AF8FF99E1E35B13B00392FA2 /* dashes-keyboard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +111,18 @@
 			path = "d-a-s-h-e-s";
 			sourceTree = "<group>";
 		};
+		AF8FF99F1E35B13B00392FA2 /* dashes-keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				AF8FF9A01E35B13B00392FA2 /* KeyboardViewController.swift */,
+				AF8FF9A21E35B13B00392FA2 /* Info.plist */,
+				AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */,
+				AF8A84601E36EE5200A8E54A /* IdealKeyboardView.xib */,
+				AF8A84631E36EF4100A8E54A /* CircularButton.swift */,
+			);
+			path = "dashes-keyboard";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,15 +133,34 @@
 				AF8FF9811E35B10300392FA2 /* Sources */,
 				AF8FF9821E35B10300392FA2 /* Frameworks */,
 				AF8FF9831E35B10300392FA2 /* Resources */,
+				AF8FF9A91E35B13B00392FA2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AF8FF9A41E35B13B00392FA2 /* PBXTargetDependency */,
 			);
 			name = "d-a-s-h-e-s";
 			productName = "d-a-s-h-e-s";
 			productReference = AF8FF9851E35B10300392FA2 /* d-a-s-h-e-s.app */;
 			productType = "com.apple.product-type.application";
+		};
+		AF8FF99D1E35B13B00392FA2 /* dashes-keyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF8FF9A61E35B13B00392FA2 /* Build configuration list for PBXNativeTarget "dashes-keyboard" */;
+			buildPhases = (
+				AF8FF99A1E35B13B00392FA2 /* Sources */,
+				AF8FF99B1E35B13B00392FA2 /* Frameworks */,
+				AF8FF99C1E35B13B00392FA2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "dashes-keyboard";
+			productName = "dashes-keyboard";
+			productReference = AF8FF99E1E35B13B00392FA2 /* dashes-keyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -95,6 +173,11 @@
 				ORGANIZATIONNAME = "Student Driver";
 				TargetAttributes = {
 					AF8FF9841E35B10300392FA2 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = ND43N89R4B;
+						ProvisioningStyle = Automatic;
+					};
+					AF8FF99D1E35B13B00392FA2 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = ND43N89R4B;
 						ProvisioningStyle = Automatic;
@@ -115,6 +198,7 @@
 			projectRoot = "";
 			targets = (
 				AF8FF9841E35B10300392FA2 /* d-a-s-h-e-s */,
+				AF8FF99D1E35B13B00392FA2 /* dashes-keyboard */,
 			);
 		};
 /* End PBXProject section */
@@ -124,9 +208,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF5019091E35C88600F4E3B6 /* ProperKeyboard.xib in Resources */,
 				AF8FF9931E35B10300392FA2 /* LaunchScreen.storyboard in Resources */,
+				AF8A84611E36EE5200A8E54A /* IdealKeyboardView.xib in Resources */,
 				AF8FF9901E35B10300392FA2 /* Assets.xcassets in Resources */,
 				AF8FF98E1E35B10300392FA2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF8FF99C1E35B13B00392FA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF50190A1E35CE7E00F4E3B6 /* ProperKeyboard.xib in Resources */,
+				AF8A84621E36EE5200A8E54A /* IdealKeyboardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,10 +234,28 @@
 			files = (
 				AF8FF98B1E35B10300392FA2 /* ViewController.swift in Sources */,
 				AF8FF9891E35B10300392FA2 /* AppDelegate.swift in Sources */,
+				AF8A84641E36EF4100A8E54A /* CircularButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF8FF99A1E35B13B00392FA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF8A84651E36EF4100A8E54A /* CircularButton.swift in Sources */,
+				AF8FF9A11E35B13B00392FA2 /* KeyboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AF8FF9A41E35B13B00392FA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF8FF99D1E35B13B00392FA2 /* dashes-keyboard */;
+			targetProxy = AF8FF9A31E35B13B00392FA2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AF8FF98C1E35B10300392FA2 /* Main.storyboard */ = {
@@ -258,6 +371,7 @@
 		AF8FF9981E35B10300392FA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ND43N89R4B;
 				INFOPLIST_FILE = "d-a-s-h-e-s/Info.plist";
@@ -271,12 +385,39 @@
 		AF8FF9991E35B10300392FA2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ND43N89R4B;
 				INFOPLIST_FILE = "d-a-s-h-e-s/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.studentdriver.d-a-s-h-e-s";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		AF8FF9A71E35B13B00392FA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = ND43N89R4B;
+				INFOPLIST_FILE = "dashes-keyboard/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.studentdriver.d-a-s-h-e-s.dashes-keyboard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		AF8FF9A81E35B13B00392FA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = ND43N89R4B;
+				INFOPLIST_FILE = "dashes-keyboard/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.studentdriver.d-a-s-h-e-s.dashes-keyboard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -300,6 +441,16 @@
 				AF8FF9991E35B10300392FA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF8FF9A61E35B13B00392FA2 /* Build configuration list for PBXNativeTarget "dashes-keyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF8FF9A71E35B13B00392FA2 /* Debug */,
+				AF8FF9A81E35B13B00392FA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
