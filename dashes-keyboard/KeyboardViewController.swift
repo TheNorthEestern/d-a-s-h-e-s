@@ -11,6 +11,7 @@ import UIKit
 class KeyboardViewController: UIInputViewController {
 
     var customInterface : UIView!
+    var lastChange: String!
 
     var lastWordTyped: String? {
         if let documentContext = textDocumentProxy.documentContextBeforeInput as String? {
@@ -26,11 +27,18 @@ class KeyboardViewController: UIInputViewController {
     @IBOutlet var nextKeyboardButton: UIButton!
     
     @IBAction func sendText(_ sender: Any) {
-        let textBuffer = lastWordTyped
+        lastChange = lastWordTyped
         for _ in (lastWordTyped?.characters.indices)! {
             textDocumentProxy.deleteBackward()
         }
-        (textDocumentProxy as UIKeyInput).insertText("\(dashify(textBuffer!))")
+        (textDocumentProxy as UIKeyInput).insertText("\(dashify(lastChange))")
+    }
+    
+    @IBAction func undoDashify(_ sender: Any) {
+        for _ in (lastWordTyped?.characters.indices)! {
+            textDocumentProxy.deleteBackward()
+        }
+        (textDocumentProxy as UIKeyInput).insertText("\(lastChange!)")
     }
     
     @IBAction func deleteText(_ sender: Any) {
@@ -81,6 +89,6 @@ class KeyboardViewController: UIInputViewController {
 
 extension String {
     var containsAlphabets: Bool {
-        return utf16.contains { (CharacterSet.letters as NSCharacterSet).characterIsMember($0) }
+        return utf16.contains { (CharacterSet.alphanumerics as NSCharacterSet).characterIsMember($0) }
     }
 }

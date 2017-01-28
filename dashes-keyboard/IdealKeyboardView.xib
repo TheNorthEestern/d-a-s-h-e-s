@@ -20,23 +20,43 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nak-el-Li7" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
-                    <rect key="frame" x="110" y="60" width="100" height="100"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="122.5" y="72.5" width="75" height="75"/>
+                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="EWA-c2-eFk"/>
-                        <constraint firstAttribute="height" constant="100" id="Y9I-vw-KPB"/>
+                        <constraint firstAttribute="width" constant="75" id="EWA-c2-eFk"/>
+                        <constraint firstAttribute="height" constant="75" id="Y9I-vw-KPB"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
-                    <state key="normal" title="d-a-s-h-i-f-y">
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="21"/>
+                    <state key="normal" title="a-b-c">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="50"/>
+                            <real key="value" value="37.5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="sendText:" destination="-1" eventType="touchUpInside" id="phb-kQ-gRs"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Pd-Yn-Btt" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
+                    <rect key="frame" x="16" y="73" width="75" height="75"/>
+                    <color key="backgroundColor" red="0.9994240403175354" green="0.85517703108957099" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="73c-fi-QYm"/>
+                        <constraint firstAttribute="height" constant="75" id="Vqe-z5-kdQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                    <state key="normal" title="↺">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="37.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="undoDashify:" destination="-2" eventType="touchUpInside" id="nby-FX-cRp"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ae7-fU-pPV">
@@ -45,32 +65,42 @@
                         <constraint firstAttribute="height" constant="30" id="VLs-LE-h4F"/>
                         <constraint firstAttribute="width" constant="40" id="xMe-XL-Y8i"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                    <state key="normal" title="☎"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="50"/>
+                    <state key="normal" title="✌︎"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPw-lI-hbe">
-                    <rect key="frame" x="267" y="9" width="46" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIg-gO-l56" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
+                    <rect key="frame" x="229" y="72" width="75" height="75"/>
+                    <color key="backgroundColor" red="0.9994240403175354" green="0.42586435037664289" blue="0.00019214150717161515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="Qkf-fa-g3q"/>
-                        <constraint firstAttribute="width" constant="46" id="dNS-K2-WHc"/>
+                        <constraint firstAttribute="height" constant="75" id="ZdG-4X-YcV"/>
+                        <constraint firstAttribute="width" constant="75" id="ryG-Uo-S8O"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="40"/>
                     <state key="normal" title="☜">
-                        <color key="titleColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="37.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="deleteText:" destination="-1" eventType="touchUpInside" id="Nvu-sY-lGR"/>
+                        <action selector="deleteText:" destination="-2" eventType="touchUpInside" id="N3w-Hy-Y0A"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="0.99215686274509807" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="ZIg-gO-l56" firstAttribute="leading" secondItem="nak-el-Li7" secondAttribute="trailing" constant="31.5" id="05Z-aT-efy"/>
                 <constraint firstAttribute="bottom" secondItem="ae7-fU-pPV" secondAttribute="bottom" constant="11" id="Mf0-bb-XGi"/>
+                <constraint firstItem="ae7-fU-pPV" firstAttribute="top" secondItem="2Pd-Yn-Btt" secondAttribute="bottom" constant="31" id="OCR-ZE-BY8"/>
+                <constraint firstItem="ZIg-gO-l56" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="72" id="W1s-9R-YEz"/>
+                <constraint firstAttribute="bottom" secondItem="ZIg-gO-l56" secondAttribute="bottom" constant="73" id="YGB-hH-pcT"/>
                 <constraint firstItem="nak-el-Li7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ZvC-7I-BBN"/>
-                <constraint firstItem="IPw-lI-hbe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="aOc-Z8-cXq"/>
                 <constraint firstItem="nak-el-Li7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="c4E-cv-VW4"/>
+                <constraint firstItem="nak-el-Li7" firstAttribute="leading" secondItem="2Pd-Yn-Btt" secondAttribute="trailing" constant="31.5" id="eeB-t7-zFZ"/>
                 <constraint firstItem="ae7-fU-pPV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="9" id="l6F-0N-4sK"/>
-                <constraint firstAttribute="trailing" secondItem="IPw-lI-hbe" secondAttribute="trailing" constant="7" id="mOe-PV-9N7"/>
+                <constraint firstItem="2Pd-Yn-Btt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="73" id="xiX-2M-bQ7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
