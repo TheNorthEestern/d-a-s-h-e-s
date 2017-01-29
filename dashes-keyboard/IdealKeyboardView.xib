@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KeyboardViewController" customModule="dashes_keyboard">
             <connections>
                 <outlet property="nextKeyboardButton" destination="ae7-fU-pPV" id="bdP-cN-mdb"/>
+                <outlet property="undoButton" destination="2Pd-Yn-Btt" id="mzP-C5-FvP"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

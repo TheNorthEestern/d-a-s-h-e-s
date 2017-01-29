@@ -11,7 +11,7 @@ import UIKit
 class KeyboardViewController: UIInputViewController {
 
     var customInterface : UIView!
-    var lastChange: String!
+    var originalWord: String!
 
     var lastWordTyped: String? {
         if let documentContext = textDocumentProxy.documentContextBeforeInput as String? {
@@ -24,21 +24,26 @@ class KeyboardViewController: UIInputViewController {
         return nil
     }
     
+    @IBOutlet weak var undoButton: CircularButton!
     @IBOutlet var nextKeyboardButton: UIButton!
     
     @IBAction func sendText(_ sender: Any) {
-        lastChange = lastWordTyped
+        originalWord = lastWordTyped
         for _ in (lastWordTyped?.characters.indices)! {
             textDocumentProxy.deleteBackward()
         }
-        (textDocumentProxy as UIKeyInput).insertText("\(dashify(lastChange))")
+        (textDocumentProxy as UIKeyInput).insertText("\(dashify(originalWord))")
+        undoButton.layer.opacity = 1.0
+        undoButton.isEnabled = true
     }
     
     @IBAction func undoDashify(_ sender: Any) {
-        for _ in (lastWordTyped?.characters.indices)! {
+        for _ in 0..<(((originalWord?.characters.count)! * 2) - 1) {
             textDocumentProxy.deleteBackward()
         }
-        (textDocumentProxy as UIKeyInput).insertText("\(lastChange!)")
+        (textDocumentProxy as UIKeyInput).insertText("\(originalWord!)")
+        undoButton.layer.opacity = 0.5
+        undoButton.isEnabled = false
     }
     
     @IBAction func deleteText(_ sender: Any) {
@@ -66,6 +71,8 @@ class KeyboardViewController: UIInputViewController {
         let nib = UINib(nibName: "IdealKeyboardView", bundle: nil)
         let objects = nib.instantiate(withOwner: self, options: nil)
         view = objects[0] as? UIView
+        undoButton.isEnabled = false
+        undoButton.layer.opacity = 0.5
         self.nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
     }
     
