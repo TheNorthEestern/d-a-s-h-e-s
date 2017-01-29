@@ -12,7 +12,9 @@ class KeyboardViewController: UIInputViewController {
 
     var customInterface : UIView!
     var originalWord: String!
+    var timer: Timer?
 
+    @IBOutlet var deleteGestureRecognizer: UILongPressGestureRecognizer!
     var lastWordTyped: String? {
         if let documentContext = textDocumentProxy.documentContextBeforeInput as String? {
             let length = documentContext.characters.count
@@ -25,20 +27,27 @@ class KeyboardViewController: UIInputViewController {
     }
     
     @IBOutlet weak var undoButton: CircularButton!
+    @IBOutlet weak var deleteButton: CircularButton!
     @IBOutlet var nextKeyboardButton: UIButton!
     
     @IBAction func sendText(_ sender: Any) {
-        originalWord = lastWordTyped
-        for _ in (lastWordTyped?.characters.indices)! {
-            textDocumentProxy.deleteBackward()
+        let tdp = (textDocumentProxy as UIKeyInput)
+        if let originalWord = lastWordTyped, originalWord != "" {
+            self.originalWord = lastWordTyped
+            for _ in (lastWordTyped?.characters.indices)! {
+                textDocumentProxy.deleteBackward()
+            }
+            tdp.insertText("\(dashify(originalWord)) ")
+            undoButton.layer.opacity = 1.0
+            undoButton.isEnabled = true
+        } else {
+            tdp.deleteBackward()
+            sendText(self)
         }
-        (textDocumentProxy as UIKeyInput).insertText("\(dashify(originalWord))")
-        undoButton.layer.opacity = 1.0
-        undoButton.isEnabled = true
     }
     
     @IBAction func undoDashify(_ sender: Any) {
-        for _ in 0..<(((originalWord?.characters.count)! * 2) - 1) {
+        for _ in 0..<((originalWord?.characters.count)! * 2) {
             textDocumentProxy.deleteBackward()
         }
         (textDocumentProxy as UIKeyInput).insertText("\(originalWord!)")
@@ -62,17 +71,32 @@ class KeyboardViewController: UIInputViewController {
         return dashedText.joined()
     }
     
+    @IBAction func longPressHandler(gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(KeyboardViewController.deleteText(_:)), userInfo: nil, repeats: true)
+        } else if gesture.state == .ended || gesture.state == .cancelled {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+
+}
+
+extension KeyboardViewController {
     override func updateViewConstraints() {
         super.updateViewConstraints()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "IdealKeyboardView", bundle: nil)
         let objects = nib.instantiate(withOwner: self, options: nil)
         view = objects[0] as? UIView
+        
         undoButton.isEnabled = false
         undoButton.layer.opacity = 0.5
+       
+        
         self.nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
     }
     

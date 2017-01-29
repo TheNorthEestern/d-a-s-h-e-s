@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KeyboardViewController" customModule="dashes_keyboard">
             <connections>
+                <outlet property="deleteButton" destination="ZIg-gO-l56" id="cWW-3r-8ah"/>
+                <outlet property="deleteGestureRecognizer" destination="AjB-Yp-akg" id="mUX-Ef-YT8"/>
                 <outlet property="nextKeyboardButton" destination="ae7-fU-pPV" id="bdP-cN-mdb"/>
                 <outlet property="undoButton" destination="2Pd-Yn-Btt" id="mzP-C5-FvP"/>
             </connections>
@@ -72,6 +74,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIg-gO-l56" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
                     <rect key="frame" x="229" y="72" width="75" height="75"/>
                     <color key="backgroundColor" red="0.9994240403175354" green="0.42586435037664289" blue="0.00019214150717161515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="75" id="ZdG-4X-YcV"/>
                         <constraint firstAttribute="width" constant="75" id="ryG-Uo-S8O"/>
@@ -87,6 +90,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="deleteText:" destination="-2" eventType="touchUpInside" id="N3w-Hy-Y0A"/>
+                        <outletCollection property="gestureRecognizers" destination="AjB-Yp-akg" appends="YES" id="r83-fo-5Ua"/>
                     </connections>
                 </button>
             </subviews>
@@ -105,5 +109,10 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
+        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="AjB-Yp-akg">
+            <connections>
+                <action selector="longPressHandlerWithGesture:" destination="-2" id="JVU-1G-SpZ"/>
+            </connections>
+        </pongPressGestureRecognizer>
     </objects>
 </document>
