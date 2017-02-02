@@ -12,7 +12,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KeyboardViewController" customModule="dashes_keyboard">
             <connections>
                 <outlet property="deleteButton" destination="ZIg-gO-l56" id="cWW-3r-8ah"/>
-                <outlet property="deleteGestureRecognizer" destination="AjB-Yp-akg" id="mUX-Ef-YT8"/>
                 <outlet property="nextKeyboardButton" destination="ae7-fU-pPV" id="bdP-cN-mdb"/>
                 <outlet property="undoButton" destination="2Pd-Yn-Btt" id="mzP-C5-FvP"/>
             </connections>
@@ -63,13 +62,15 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ae7-fU-pPV">
-                    <rect key="frame" x="9" y="179" width="40" height="30"/>
+                    <rect key="frame" x="0.0" y="179" width="40" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="VLs-LE-h4F"/>
                         <constraint firstAttribute="width" constant="40" id="xMe-XL-Y8i"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="50"/>
-                    <state key="normal" title="✌︎"/>
+                    <state key="normal" title="✌︎">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIg-gO-l56" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
                     <rect key="frame" x="229" y="72" width="75" height="75"/>
@@ -89,8 +90,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="deleteText:" destination="-2" eventType="touchUpInside" id="N3w-Hy-Y0A"/>
-                        <outletCollection property="gestureRecognizers" destination="AjB-Yp-akg" appends="YES" id="r83-fo-5Ua"/>
+                        <action selector="deleteTextWithTimer:" destination="-2" eventType="touchUpInside" id="gOx-o7-hEe"/>
                     </connections>
                 </button>
             </subviews>
@@ -104,15 +104,10 @@
                 <constraint firstItem="nak-el-Li7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ZvC-7I-BBN"/>
                 <constraint firstItem="nak-el-Li7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="c4E-cv-VW4"/>
                 <constraint firstItem="nak-el-Li7" firstAttribute="leading" secondItem="2Pd-Yn-Btt" secondAttribute="trailing" constant="31.5" id="eeB-t7-zFZ"/>
-                <constraint firstItem="ae7-fU-pPV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="9" id="l6F-0N-4sK"/>
+                <constraint firstItem="ae7-fU-pPV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eqz-V3-7wA"/>
                 <constraint firstItem="2Pd-Yn-Btt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="73" id="xiX-2M-bQ7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
-        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="AjB-Yp-akg">
-            <connections>
-                <action selector="longPressHandlerWithGesture:" destination="-2" id="JVU-1G-SpZ"/>
-            </connections>
-        </pongPressGestureRecognizer>
     </objects>
 </document>

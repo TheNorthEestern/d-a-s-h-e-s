@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF4033C81E3FE8E60046C10B /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4033C71E3FE8E60046C10B /* String+Ext.swift */; };
+		AF4033CF1E3FEAAC0046C10B /* StringManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4033CE1E3FEAAC0046C10B /* StringManipulator.swift */; };
 		AF5019091E35C88600F4E3B6 /* ProperKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */; };
 		AF50190A1E35CE7E00F4E3B6 /* ProperKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */; };
 		AF8A84611E36EE5200A8E54A /* IdealKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8A84601E36EE5200A8E54A /* IdealKeyboardView.xib */; };
@@ -47,6 +49,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AF4033C71E3FE8E60046C10B /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		AF4033CE1E3FEAAC0046C10B /* StringManipulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringManipulator.swift; sourceTree = "<group>"; };
 		AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProperKeyboard.xib; sourceTree = "<group>"; };
 		AF8A84601E36EE5200A8E54A /* IdealKeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdealKeyboardView.xib; sourceTree = "<group>"; };
 		AF8A84631E36EF4100A8E54A /* CircularButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
@@ -80,6 +84,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF4033C91E3FE8EB0046C10B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AF4033C71E3FE8E60046C10B /* String+Ext.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		AF4033CA1E3FE8FD0046C10B /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */,
+				AF8A84601E36EE5200A8E54A /* IdealKeyboardView.xib */,
+			);
+			name = XIBs;
+			sourceTree = "<group>";
+		};
+		AF4033CB1E3FE9180046C10B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AF8FF9A01E35B13B00392FA2 /* KeyboardViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		AF4033CC1E3FE92B0046C10B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AF8A84631E36EF4100A8E54A /* CircularButton.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		AF4033CD1E3FEA8B0046C10B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AF4033CE1E3FEAAC0046C10B /* StringManipulator.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		AF8FF97C1E35B10300392FA2 = {
 			isa = PBXGroup;
 			children = (
@@ -114,11 +159,12 @@
 		AF8FF99F1E35B13B00392FA2 /* dashes-keyboard */ = {
 			isa = PBXGroup;
 			children = (
-				AF8FF9A01E35B13B00392FA2 /* KeyboardViewController.swift */,
+				AF4033CD1E3FEA8B0046C10B /* Utilities */,
+				AF4033CC1E3FE92B0046C10B /* Views */,
+				AF4033CB1E3FE9180046C10B /* Controllers */,
+				AF4033CA1E3FE8FD0046C10B /* XIBs */,
+				AF4033C91E3FE8EB0046C10B /* Extensions */,
 				AF8FF9A21E35B13B00392FA2 /* Info.plist */,
-				AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */,
-				AF8A84601E36EE5200A8E54A /* IdealKeyboardView.xib */,
-				AF8A84631E36EF4100A8E54A /* CircularButton.swift */,
 			);
 			path = "dashes-keyboard";
 			sourceTree = "<group>";
@@ -242,6 +288,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF4033C81E3FE8E60046C10B /* String+Ext.swift in Sources */,
+				AF4033CF1E3FEAAC0046C10B /* StringManipulator.swift in Sources */,
 				AF8A84651E36EF4100A8E54A /* CircularButton.swift in Sources */,
 				AF8FF9A11E35B13B00392FA2 /* KeyboardViewController.swift in Sources */,
 			);
@@ -373,6 +421,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = ND43N89R4B;
 				INFOPLIST_FILE = "d-a-s-h-e-s/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -387,6 +436,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = ND43N89R4B;
 				INFOPLIST_FILE = "d-a-s-h-e-s/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
