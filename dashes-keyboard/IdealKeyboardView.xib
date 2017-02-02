@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="deleteButton" destination="ZIg-gO-l56" id="cWW-3r-8ah"/>
                 <outlet property="nextKeyboardButton" destination="ae7-fU-pPV" id="bdP-cN-mdb"/>
+                <outlet property="previewLabel" destination="VUs-uH-dSt" id="8Sx-M1-01S"/>
                 <outlet property="undoButton" destination="2Pd-Yn-Btt" id="mzP-C5-FvP"/>
             </connections>
         </placeholder>
@@ -93,10 +94,18 @@
                         <action selector="deleteTextWithTimer:" destination="-2" eventType="touchUpInside" id="gOx-o7-hEe"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VUs-uH-dSt">
+                    <rect key="frame" x="15" y="25" width="290" height="29.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="0.99215686274509807" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ZIg-gO-l56" firstAttribute="leading" secondItem="nak-el-Li7" secondAttribute="trailing" constant="31.5" id="05Z-aT-efy"/>
+                <constraint firstItem="VUs-uH-dSt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="0Da-SI-W4L"/>
+                <constraint firstItem="VUs-uH-dSt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="CXH-VM-EWv"/>
                 <constraint firstAttribute="bottom" secondItem="ae7-fU-pPV" secondAttribute="bottom" constant="11" id="Mf0-bb-XGi"/>
                 <constraint firstItem="ae7-fU-pPV" firstAttribute="top" secondItem="2Pd-Yn-Btt" secondAttribute="bottom" constant="31" id="OCR-ZE-BY8"/>
                 <constraint firstItem="ZIg-gO-l56" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="72" id="W1s-9R-YEz"/>
@@ -105,6 +114,8 @@
                 <constraint firstItem="nak-el-Li7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="c4E-cv-VW4"/>
                 <constraint firstItem="nak-el-Li7" firstAttribute="leading" secondItem="2Pd-Yn-Btt" secondAttribute="trailing" constant="31.5" id="eeB-t7-zFZ"/>
                 <constraint firstItem="ae7-fU-pPV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eqz-V3-7wA"/>
+                <constraint firstAttribute="trailing" secondItem="VUs-uH-dSt" secondAttribute="trailing" constant="15" id="fel-DD-1fU"/>
+                <constraint firstItem="VUs-uH-dSt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="py0-7q-pcc"/>
                 <constraint firstItem="2Pd-Yn-Btt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="73" id="xiX-2M-bQ7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

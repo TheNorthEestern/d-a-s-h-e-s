@@ -15,6 +15,7 @@ class KeyboardViewController: UIInputViewController {
     var deleteButtonTimer: Timer?
     
     @IBOutlet weak var undoButton: CircularButton!
+    @IBOutlet weak var previewLabel: UILabel!
     @IBOutlet weak var deleteButton: CircularButton!
     @IBOutlet var nextKeyboardButton: UIButton!
     
@@ -54,8 +55,9 @@ class KeyboardViewController: UIInputViewController {
         undoButton.isEnabled = false
     }
     
-    @IBAction func deleteText(_ sender: Any) {
+    @IBAction func deleteText(timer: Timer) {
         textDocumentProxy.deleteBackward()
+        updatePreview()
     }
 }
 
@@ -66,6 +68,7 @@ extension KeyboardViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        updatePreview()
     }
     
     override func viewDidLoad() {
@@ -89,11 +92,21 @@ extension KeyboardViewController {
     
     override func textWillChange(_ textInput: UITextInput?) {
         // The app is about to change the document's contents. Perform any preparation here.
+        updatePreview()
     }
     
     override func textDidChange(_ textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
+        updatePreview()
         nextKeyboardButton.setTitleColor(UIColor.black, for: [])
+    }
+    
+    func updatePreview() {
+        if let l = lastWordTyped, !(lastWordTyped?.isEmpty)! {
+            previewLabel.text = "☞ \(StringManipulator.dashify(l))"
+        } else {
+            previewLabel.text = ""
+        }
     }
 }
 
