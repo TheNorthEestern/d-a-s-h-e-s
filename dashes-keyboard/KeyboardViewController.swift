@@ -105,7 +105,7 @@ extension KeyboardViewController {
         if let l = lastWordTyped, !(lastWordTyped?.isEmpty)! {
             previewLabel.text = "☞ \(StringManipulator.dashify(l))"
         } else {
-            previewLabel.text = ""
+            previewLabel.text = "select a word to d-a-s-h-i-f-y"
         }
     }
 }
