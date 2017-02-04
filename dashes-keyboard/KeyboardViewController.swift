@@ -79,6 +79,10 @@ extension KeyboardViewController {
         
         view = objects[0] as? UIView
         
+        dashifyButton.titleLabel?.numberOfLines = 1
+        dashifyButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        dashifyButton.titleLabel?.lineBreakMode = .byClipping
+        
         undoButton.isEnabled = false
         undoButton.layer.opacity = 0.5
        
