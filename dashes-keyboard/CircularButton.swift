@@ -14,6 +14,11 @@ import UIKit
             setupView()
         }
     }
+    @IBInspectable var balancedContentEdgeInset: CGFloat = 0 {
+        didSet {
+            setupView()
+        }
+    }
 }
 
 extension CircularButton {
@@ -23,6 +28,10 @@ extension CircularButton {
     
     func setupView() {
         layer.cornerRadius = cornerRadius
+        self.contentEdgeInsets = UIEdgeInsetsMake(balancedContentEdgeInset,
+                                                  balancedContentEdgeInset,
+                                                  balancedContentEdgeInset,
+                                                  balancedContentEdgeInset)
         // layer.borderWidth = 5.0
         // layer.borderColor = UIColor.black.cgColor
     }

@@ -18,6 +18,7 @@ class KeyboardViewController: UIInputViewController {
     @IBOutlet weak var previewLabel: UILabel!
     @IBOutlet weak var deleteButton: CircularButton!
     @IBOutlet var nextKeyboardButton: UIButton!
+    @IBOutlet weak var dashifyButton: CircularButton!
     
     var lastWordTyped: String? {
         if let documentContext = textDocumentProxy.documentContextBeforeInput as String? {
@@ -75,7 +76,7 @@ extension KeyboardViewController {
         super.viewDidLoad()
         let nib = UINib(nibName: "IdealKeyboardView", bundle: nil)
         let objects = nib.instantiate(withOwner: self, options: nil)
-
+        
         view = objects[0] as? UIView
         
         undoButton.isEnabled = false
@@ -104,7 +105,9 @@ extension KeyboardViewController {
     func updatePreview() {
         if let l = lastWordTyped, !(lastWordTyped?.isEmpty)! {
             previewLabel.text = "☞ \(StringManipulator.dashify(l))"
+            dashifyButton.setTitle(previewLabel.text, for: .normal)
         } else {
+            
             previewLabel.text = "select a word to d-a-s-h-i-f-y"
         }
     }

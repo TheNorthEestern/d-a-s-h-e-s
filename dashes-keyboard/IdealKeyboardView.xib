@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KeyboardViewController" customModule="dashes_keyboard">
             <connections>
+                <outlet property="dashifyButton" destination="idv-rA-hKL" id="6o5-nQ-fgY"/>
                 <outlet property="deleteButton" destination="ZIg-gO-l56" id="cWW-3r-8ah"/>
                 <outlet property="nextKeyboardButton" destination="ae7-fU-pPV" id="bdP-cN-mdb"/>
                 <outlet property="previewLabel" destination="VUs-uH-dSt" id="8Sx-M1-01S"/>
@@ -34,16 +35,35 @@
                     </state>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8rD-Mg-yUE">
-                    <rect key="frame" x="28" y="53.5" width="265" height="114.5"/>
+                    <rect key="frame" x="48" y="27.5" width="225" height="166.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VUs-uH-dSt">
-                            <rect key="frame" x="102" y="0.0" width="61.5" height="29.5"/>
+                            <rect key="frame" x="82" y="0.0" width="61.5" height="29.5"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idv-rA-hKL" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="39.5" width="225" height="42"/>
+                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="35"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="balancedContentEdgeInset">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="sendText:" destination="-2" eventType="touchUpInside" id="UYa-Rc-M5d"/>
+                            </connections>
+                        </button>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QFP-1q-4bk">
-                            <rect key="frame" x="0.0" y="39.5" width="265" height="75"/>
+                            <rect key="frame" x="27.5" y="91.5" width="170" height="75"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Pd-Yn-Btt" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
@@ -65,28 +85,8 @@
                                         <action selector="undoDashify:" destination="-2" eventType="touchUpInside" id="nby-FX-cRp"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nak-el-Li7" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
-                                    <rect key="frame" x="95" y="0.0" width="75" height="75"/>
-                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="75" id="EWA-c2-eFk"/>
-                                        <constraint firstAttribute="height" constant="75" id="Y9I-vw-KPB"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="21"/>
-                                    <state key="normal" title="a-b-c">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="37.5"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="sendText:" destination="-1" eventType="touchUpInside" id="phb-kQ-gRs"/>
-                                    </connections>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIg-gO-l56" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
-                                    <rect key="frame" x="190" y="0.0" width="75" height="75"/>
+                                    <rect key="frame" x="95" y="0.0" width="75" height="75"/>
                                     <color key="backgroundColor" red="0.9994240403175354" green="0.42586435037664289" blue="0.00019214150717161515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <constraints>
@@ -109,6 +109,11 @@
                             </subviews>
                         </stackView>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="idv-rA-hKL" firstAttribute="leading" secondItem="8rD-Mg-yUE" secondAttribute="leading" id="GBL-kr-Qnq"/>
+                        <constraint firstAttribute="trailing" secondItem="idv-rA-hKL" secondAttribute="trailing" id="dR6-3C-ugU"/>
+                        <constraint firstAttribute="width" constant="225" id="f21-St-kaP"/>
+                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="0.99215686274509807" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
