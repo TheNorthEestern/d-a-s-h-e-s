@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MarqueeLabel
 
 class KeyboardViewController: UIInputViewController {
 
@@ -116,4 +117,3 @@ extension KeyboardViewController {
         }
     }
 }
-

@@ -34,17 +34,17 @@
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8rD-Mg-yUE">
-                    <rect key="frame" x="48" y="27.5" width="225" height="166.5"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8rD-Mg-yUE">
+                    <rect key="frame" x="48" y="6" width="225" height="209.5"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VUs-uH-dSt">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VUs-uH-dSt">
                             <rect key="frame" x="82" y="0.0" width="61.5" height="29.5"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idv-rA-hKL" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="39.5" width="225" height="42"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idv-rA-hKL" customClass="PaddedCircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="49.5" width="225" height="65"/>
                             <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                             <state key="normal" title="Button">
@@ -52,7 +52,7 @@
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="35"/>
+                                    <real key="value" value="32"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="balancedContentEdgeInset">
                                     <real key="value" value="20"/>
@@ -62,8 +62,8 @@
                                 <action selector="sendText:" destination="-2" eventType="touchUpInside" id="UYa-Rc-M5d"/>
                             </connections>
                         </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QFP-1q-4bk">
-                            <rect key="frame" x="27.5" y="91.5" width="170" height="75"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="55" translatesAutoresizingMaskIntoConstraints="NO" id="QFP-1q-4bk">
+                            <rect key="frame" x="10" y="134.5" width="205" height="75"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Pd-Yn-Btt" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
@@ -86,7 +86,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIg-gO-l56" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
-                                    <rect key="frame" x="95" y="0.0" width="75" height="75"/>
+                                    <rect key="frame" x="130" y="0.0" width="75" height="75"/>
                                     <color key="backgroundColor" red="0.9994240403175354" green="0.42586435037664289" blue="0.00019214150717161515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <constraints>
