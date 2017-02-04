@@ -110,9 +110,11 @@ extension KeyboardViewController {
     func updatePreview() {
         if let l = lastWordTyped, !(lastWordTyped?.isEmpty)! {
             previewLabel.text = "☞ \(StringManipulator.dashify(l))"
+            dashifyButton.isEnabled = true
             dashifyButton.setTitle(previewLabel.text, for: .normal)
         } else {
-            
+            dashifyButton.setTitle("no selection available", for: .normal)
+            dashifyButton.isEnabled = false
             previewLabel.text = "select a word to d-a-s-h-i-f-y"
         }
     }
