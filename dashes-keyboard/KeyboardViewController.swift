@@ -24,8 +24,14 @@ class KeyboardViewController: UIInputViewController {
     var lastWordTyped: String? {
         if let documentContext = textDocumentProxy.documentContextBeforeInput as String? {
             let length = documentContext.characters.count
-            if length > 0 && (documentContext.containsAlphabets || documentContext.containsSymbols) {
-                let components = documentContext.components(separatedBy: CharacterSet.alphanumerics.inverted)
+            var components = [String]()
+            if length > 0 {
+                if (documentContext.containsAlphabets) {
+                    components = documentContext.components(separatedBy: CharacterSet.alphanumerics.inverted)
+                }
+                if (documentContext.containsSymbols) {
+                    components = documentContext.components(separatedBy: CharacterSet.symbols.inverted)
+                }
                 return components[components.endIndex - 1]
             }
         }
@@ -80,18 +86,10 @@ extension KeyboardViewController {
         
         view = objects[0] as? UIView
         
-        dashifyButton.titleLabel?.numberOfLines = 1
-        dashifyButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        dashifyButton.titleLabel?.lineBreakMode = .byClipping
-        
-        undoButton.isEnabled = false
-        undoButton.layer.opacity = 0.5
-       
-        let deleteButtonLongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.deleteText))
-        deleteButtonLongPressGestureRecognizer.minimumPressDuration = 0.5
-        deleteButtonLongPressGestureRecognizer.numberOfTouchesRequired = 1
-        deleteButtonLongPressGestureRecognizer.allowableMovement = 75
-        deleteButton.addGestureRecognizer(deleteButtonLongPressGestureRecognizer)
+        configureDashifyButton()
+        configureUndoButton()
+        configureDeleteButton()
+      
         
         nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
     }
@@ -107,15 +105,33 @@ extension KeyboardViewController {
         nextKeyboardButton.setTitleColor(UIColor.black, for: [])
     }
     
+    func configureDeleteButton() {
+        let deleteButtonLongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.deleteText))
+        deleteButtonLongPressGestureRecognizer.minimumPressDuration = 0.5
+        deleteButtonLongPressGestureRecognizer.numberOfTouchesRequired = 1
+        deleteButtonLongPressGestureRecognizer.allowableMovement = 75
+        deleteButton.addGestureRecognizer(deleteButtonLongPressGestureRecognizer)
+    }
+    
+    func configureUndoButton() {
+        undoButton.isEnabled = false
+        undoButton.layer.opacity = 0.5
+    }
+    
+    func configureDashifyButton() {
+        dashifyButton.titleLabel?.numberOfLines = 1
+        dashifyButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        dashifyButton.titleLabel?.lineBreakMode = .byClipping
+    }
+    
     func updatePreview() {
         if let l = lastWordTyped, !(lastWordTyped?.isEmpty)! {
             previewLabel.text = "☞ \(StringManipulator.dashify(l))"
             dashifyButton.isEnabled = true
             dashifyButton.setTitle(previewLabel.text, for: .normal)
         } else {
-            dashifyButton.setTitle("no selection available", for: .normal)
+            dashifyButton.setTitle("pick a w-o-r-d", for: .normal)
             dashifyButton.isEnabled = false
-            previewLabel.text = "select a word to d-a-s-h-i-f-y"
         }
     }
 }
