@@ -105,6 +105,17 @@ extension KeyboardViewController {
         nextKeyboardButton.setTitleColor(UIColor.black, for: [])
     }
     
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            if #available(iOS 9.0, *) {
+                if traitCollection.forceTouchCapability == .available {
+                    let force = touch.force / touch.maximumPossibleForce
+                    print("\(force)")
+                }
+            }
+        }
+    }
+    
     func configureDeleteButton() {
         let deleteButtonLongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.deleteText))
         deleteButtonLongPressGestureRecognizer.minimumPressDuration = 0.5
