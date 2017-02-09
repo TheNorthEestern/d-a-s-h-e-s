@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MarqueeLabel
 
 class KeyboardViewController: UIInputViewController {
 
@@ -27,10 +26,7 @@ class KeyboardViewController: UIInputViewController {
             var components = [String]()
             if length > 0 {
                 if (documentContext.containsAlphabets) {
-                    components = documentContext.components(separatedBy: CharacterSet.alphanumerics.inverted)
-                }
-                if (documentContext.containsSymbols) {
-                    components = documentContext.components(separatedBy: CharacterSet.symbols.inverted)
+                    components = documentContext.components(separatedBy: CharacterSet.alphanumerics.union(CharacterSet.punctuationCharacters).inverted)
                 }
                 return components[components.endIndex - 1]
             }
@@ -40,7 +36,7 @@ class KeyboardViewController: UIInputViewController {
     
     @IBAction func sendText(_ sender: Any) {
         let tdp = (textDocumentProxy as UIKeyInput)
-        if let originalWord = lastWordTyped, originalWord != "" {
+        if let originalWord = lastWordTyped {
             self.originalWord = lastWordTyped
             for _ in (lastWordTyped?.characters.indices)! {
                 tdp.deleteBackward()
@@ -48,9 +44,6 @@ class KeyboardViewController: UIInputViewController {
             tdp.insertText("\(StringManipulator.dashify(originalWord)) ")
             undoButton.layer.opacity = 1.0
             undoButton.isEnabled = true
-        } else {
-            tdp.deleteBackward()
-            sendText(self)
         }
     }
     
@@ -64,6 +57,9 @@ class KeyboardViewController: UIInputViewController {
     }
     
     @IBAction func deleteText(timer: Timer) {
+        if (userHasBegunDeleting(the: originalWord)) {
+            configureUndoButton()
+        }
         textDocumentProxy.deleteBackward()
         updatePreview()
     }
@@ -116,6 +112,10 @@ extension KeyboardViewController {
         }
     }
     
+    func userHasBegunDeleting(the modifiedWord: String) -> Bool {
+        return StringManipulator.dashify(modifiedWord) == lastWordTyped!
+    }
+    
     func configureDeleteButton() {
         let deleteButtonLongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.deleteText))
         deleteButtonLongPressGestureRecognizer.minimumPressDuration = 0.5
@@ -136,13 +136,14 @@ extension KeyboardViewController {
     }
     
     func updatePreview() {
-        if let l = lastWordTyped, !(lastWordTyped?.isEmpty)! {
-            previewLabel.text = "☞ \(StringManipulator.dashify(l))"
-            dashifyButton.isEnabled = true
-            dashifyButton.setTitle(previewLabel.text, for: .normal)
+        if let word = lastWordTyped, word.characters.count > 1 && !(word.containsPunctuation) {
+                dashifyButton.isEnabled = true
+                dashifyButton.setTitle("☞ \(StringManipulator.dashify(word))", for: .normal)
+                dashifyButton.layer.opacity = 1.0
         } else {
-            dashifyButton.setTitle("pick a w-o-r-d", for: .normal)
+            dashifyButton.setTitle("select a word", for: .normal)
             dashifyButton.isEnabled = false
+            dashifyButton.layer.opacity = 0.5
         }
     }
 }
