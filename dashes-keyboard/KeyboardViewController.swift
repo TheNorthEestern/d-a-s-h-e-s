@@ -28,7 +28,7 @@ class KeyboardViewController: UIInputViewController {
                 if (documentContext.containsAlphabets) {
                     components = documentContext.components(separatedBy: CharacterSet.alphanumerics.union(CharacterSet.punctuationCharacters).inverted)
                 }
-                return components[components.endIndex - 1]
+                return (components.count > 0) ? components[components.endIndex - 1] : nil
             }
         }
         return nil
@@ -103,10 +103,17 @@ extension KeyboardViewController {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
+            let t = touch.location(in: self.view)
+            print("\(t.x) AND \(t.y)")
             if #available(iOS 9.0, *) {
                 if traitCollection.forceTouchCapability == .available {
                     let force = touch.force / touch.maximumPossibleForce
                     print("\(force)")
+                    if t.x < self.view.bounds.width / 2 {
+                        textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
+                    } else {
+                        textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
+                    }
                 }
             }
         }
