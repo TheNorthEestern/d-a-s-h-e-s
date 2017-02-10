@@ -13,6 +13,8 @@
             <connections>
                 <outlet property="dashifyButton" destination="idv-rA-hKL" id="6o5-nQ-fgY"/>
                 <outlet property="deleteButton" destination="ZIg-gO-l56" id="cWW-3r-8ah"/>
+                <outlet property="forceCursorView" destination="AoH-Aq-4zn" id="kgL-in-8vj"/>
+                <outlet property="mainKeyGroup" destination="8rD-Mg-yUE" id="Uso-xU-ceY"/>
                 <outlet property="nextKeyboardButton" destination="ae7-fU-pPV" id="bdP-cN-mdb"/>
                 <outlet property="undoButton" destination="2Pd-Yn-Btt" id="mzP-C5-FvP"/>
             </connections>
@@ -40,7 +42,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="225" height="65"/>
                             <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                            <state key="normal" title="select a word">
+                            <state key="normal" title="⬆︎ select a word ⬆︎">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -108,6 +110,31 @@
                         <constraint firstAttribute="width" constant="225" id="f21-St-kaP"/>
                     </constraints>
                 </stackView>
+                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="AoH-Aq-4zn">
+                    <rect key="frame" x="122" y="72.5" width="75" height="75"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aO-RU-Ype" customClass="CircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="75" id="HW3-b8-6pY"/>
+                                <constraint firstAttribute="width" constant="75" id="i2a-hI-PaJ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                            <state key="normal" title="↹">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="37.5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="undoDashify:" destination="-2" eventType="touchUpInside" id="n3U-Y3-tMP"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="0.99215686274509807" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -115,6 +142,8 @@
                 <constraint firstAttribute="bottom" secondItem="ae7-fU-pPV" secondAttribute="bottom" constant="11" id="Mf0-bb-XGi"/>
                 <constraint firstItem="8rD-Mg-yUE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XKv-Sc-NGx"/>
                 <constraint firstItem="ae7-fU-pPV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eqz-V3-7wA"/>
+                <constraint firstItem="AoH-Aq-4zn" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="lcg-3w-crU"/>
+                <constraint firstItem="AoH-Aq-4zn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zjA-fI-FVK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

@@ -15,6 +15,8 @@ class KeyboardViewController: UIInputViewController {
     var deleteButtonTimer: Timer?
     var previousTouchXPos: CGFloat = 0.0
     
+    @IBOutlet weak var forceCursorView: UIStackView!
+    @IBOutlet weak var mainKeyGroup: UIStackView!
     @IBOutlet weak var undoButton: CircularButton!
     @IBOutlet weak var deleteButton: CircularButton!
     @IBOutlet var nextKeyboardButton: UIButton!
@@ -57,8 +59,10 @@ class KeyboardViewController: UIInputViewController {
     }
     
     @IBAction func deleteText(timer: Timer) {
-        if (userHasBegunDeleting(the: originalWord)) {
-            configureUndoButton()
+        if let word = originalWord {
+            if (userHasBegunDeleting(the: word)) {
+                configureUndoButton()
+            }
         }
         textDocumentProxy.deleteBackward()
         updatePreview()
@@ -84,9 +88,9 @@ extension KeyboardViewController {
         
         view = objects[0] as? UIView
         
-        /*configureDashifyButton()
+        configureDashifyButton()
         configureUndoButton()
-        configureDeleteButton()*/
+        configureDeleteButton()
       
         
         nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
@@ -111,6 +115,8 @@ extension KeyboardViewController {
                 if traitCollection.forceTouchCapability == .available {
                     // let force = touch.force / touch.maximumPossibleForce
                     if touch.force >= (touch.maximumPossibleForce / 2) {
+                        mainKeyGroup.isHidden = true
+                        forceCursorView.isHidden = false
                         let increase = t.x - previousTouchXPos
                         let percentIncrease = increase / (previousTouchXPos * 100)
                         print(percentIncrease)
@@ -124,6 +130,9 @@ extension KeyboardViewController {
                             Thread.sleep(forTimeInterval: 0.065)
                             textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
                         }
+                    } else {
+                        mainKeyGroup.isHidden = false
+                        forceCursorView.isHidden = true
                     }
                 }
             }
@@ -157,11 +166,12 @@ extension KeyboardViewController {
         if let word = lastWordTyped, word.characters.count > 1 && !(word.containsPunctuation) {
                 dashifyButton.isEnabled = true
                 dashifyButton.setTitle("☞ \(StringManipulator.dashify(word))", for: .normal)
-                dashifyButton.layer.opacity = 1.0
+            
         } else {
-            dashifyButton.setTitle("select a word", for: .normal)
+            dashifyButton.setTitle("⬆︎ select a word ⬆︎", for: .normal)
+            dashifyButton.setTitleColor(UIColor.green, for: .normal)
             dashifyButton.isEnabled = false
-            dashifyButton.layer.opacity = 0.5
+            dashifyButton.layer.backgroundColor = UIColor.clear.cgColor
         }
     }
 }
