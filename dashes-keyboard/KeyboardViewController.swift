@@ -13,6 +13,7 @@ class KeyboardViewController: UIInputViewController {
     var customInterface : UIView!
     var originalWord: String!
     var deleteButtonTimer: Timer?
+    var previousTouchXPos: CGFloat = 0.0
     
     @IBOutlet weak var undoButton: CircularButton!
     @IBOutlet weak var previewLabel: UILabel!
@@ -104,14 +105,16 @@ extension KeyboardViewController {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let t = touch.location(in: self.view)
-            print("\(t.x) AND \(t.y)")
+            
             if #available(iOS 9.0, *) {
                 if traitCollection.forceTouchCapability == .available {
-                    let force = touch.force / touch.maximumPossibleForce
-                    print("\(force)")
-                    if t.x < self.view.bounds.width / 2 {
+                    // let force = touch.force / touch.maximumPossibleForce
+                    print(previousTouchXPos, t.x)
+                    if t.x < previousTouchXPos {
+                        previousTouchXPos = t.x
                         textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
                     } else {
+                        previousTouchXPos = t.x
                         textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
                     }
                 }
