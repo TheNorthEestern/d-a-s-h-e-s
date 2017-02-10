@@ -23,8 +23,8 @@ extension CircularButton {
     
     func setupView() {
         layer.cornerRadius = cornerRadius
-        // layer.borderWidth = 5.0
-        // layer.borderColor = UIColor.black.cgColor
+        layer.borderWidth = 5.0
+        layer.borderColor = UIColor.black.cgColor
     }
 }
 

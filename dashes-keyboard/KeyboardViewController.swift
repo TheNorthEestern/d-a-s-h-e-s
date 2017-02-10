@@ -166,12 +166,10 @@ extension KeyboardViewController {
         if let word = lastWordTyped, word.characters.count > 1 && !(word.containsPunctuation) {
                 dashifyButton.isEnabled = true
                 dashifyButton.setTitle("☞ \(StringManipulator.dashify(word))", for: .normal)
-            
         } else {
             dashifyButton.setTitle("⬆︎ select a word ⬆︎", for: .normal)
-            dashifyButton.setTitleColor(UIColor.green, for: .normal)
             dashifyButton.isEnabled = false
-            dashifyButton.layer.backgroundColor = UIColor.clear.cgColor
+            // dashifyButton.layer.backgroundColor = UIColor.clear.cgColor
         }
     }
 }
