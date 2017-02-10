@@ -14,7 +14,6 @@
                 <outlet property="dashifyButton" destination="idv-rA-hKL" id="6o5-nQ-fgY"/>
                 <outlet property="deleteButton" destination="ZIg-gO-l56" id="cWW-3r-8ah"/>
                 <outlet property="nextKeyboardButton" destination="ae7-fU-pPV" id="bdP-cN-mdb"/>
-                <outlet property="previewLabel" destination="VUs-uH-dSt" id="8Sx-M1-01S"/>
                 <outlet property="undoButton" destination="2Pd-Yn-Btt" id="mzP-C5-FvP"/>
             </connections>
         </placeholder>
@@ -37,12 +36,6 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8rD-Mg-yUE">
                     <rect key="frame" x="48" y="30" width="225" height="160"/>
                     <subviews>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VUs-uH-dSt">
-                            <rect key="frame" x="82" y="0.0" width="61.5" height="0.0"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idv-rA-hKL" customClass="PaddedCircularButton" customModule="d_a_s_h_e_s" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="225" height="65"/>
                             <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

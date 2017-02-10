@@ -1,6 +1,0 @@
-framework module Pods_d_a_s_h_e_s {
-  umbrella header "Pods-d-a-s-h-e-s-umbrella.h"
-
-  export *
-  module * { export * }
-}

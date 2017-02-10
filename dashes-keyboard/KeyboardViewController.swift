@@ -16,7 +16,6 @@ class KeyboardViewController: UIInputViewController {
     var previousTouchXPos: CGFloat = 0.0
     
     @IBOutlet weak var undoButton: CircularButton!
-    @IBOutlet weak var previewLabel: UILabel!
     @IBOutlet weak var deleteButton: CircularButton!
     @IBOutlet var nextKeyboardButton: UIButton!
     @IBOutlet weak var dashifyButton: CircularButton!
@@ -73,19 +72,21 @@ extension KeyboardViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("called view did appear")
         updatePreview()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("called view did load")
         let nib = UINib(nibName: "IdealKeyboardView", bundle: nil)
         let objects = nib.instantiate(withOwner: self, options: nil)
         
         view = objects[0] as? UIView
         
-        configureDashifyButton()
+        /*configureDashifyButton()
         configureUndoButton()
-        configureDeleteButton()
+        configureDeleteButton()*/
       
         
         nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
@@ -109,13 +110,20 @@ extension KeyboardViewController {
             if #available(iOS 9.0, *) {
                 if traitCollection.forceTouchCapability == .available {
                     // let force = touch.force / touch.maximumPossibleForce
-                    print(previousTouchXPos, t.x)
-                    if t.x < previousTouchXPos {
-                        previousTouchXPos = t.x
-                        textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
-                    } else {
-                        previousTouchXPos = t.x
-                        textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
+                    if touch.force >= (touch.maximumPossibleForce / 2) {
+                        let increase = t.x - previousTouchXPos
+                        let percentIncrease = increase / (previousTouchXPos * 100)
+                        print(percentIncrease)
+                        if percentIncrease < 0 {
+                            previousTouchXPos = t.x
+                            Thread.sleep(forTimeInterval: 0.065)
+                            textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
+                        }
+                        if percentIncrease > 0 {
+                            previousTouchXPos = t.x
+                            Thread.sleep(forTimeInterval: 0.065)
+                            textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
+                        }
                     }
                 }
             }
