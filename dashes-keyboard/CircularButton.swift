@@ -14,6 +14,11 @@ import UIKit
             setupView()
         }
     }
+    /* @IBInspectable var borderColor: UIColor = UIColor.black {
+        didSet {
+            setupView()
+        }
+    } */
 }
 
 extension CircularButton {
@@ -23,8 +28,8 @@ extension CircularButton {
     
     func setupView() {
         layer.cornerRadius = cornerRadius
-        layer.borderWidth = 5.0
-        layer.borderColor = UIColor.black.cgColor
+        // layer.borderWidth = 5.0
+        // layer.borderColor = borderColor.cgColor
     }
 }
 

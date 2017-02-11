@@ -107,6 +107,7 @@ extension KeyboardViewController {
         nextKeyboardButton.setTitleColor(UIColor.black, for: [])
     }
     
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let t = touch.location(in: self.view)
@@ -120,14 +121,19 @@ extension KeyboardViewController {
                         let increase = t.x - previousTouchXPos
                         let percentIncrease = increase / (previousTouchXPos * 100)
                         print(percentIncrease)
-                        if percentIncrease < 0 {
+                        if let lwt = lastWordTyped {
+                            print(lwt)
+                        }
+                        if percentIncrease < -0.0002 {
                             previousTouchXPos = t.x
                             Thread.sleep(forTimeInterval: 0.065)
+                            print ("num chars \(lastWordTyped?.characters.count)")
                             textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
                         }
-                        if percentIncrease > 0 {
+                        if percentIncrease > 0.0002 {
                             previousTouchXPos = t.x
                             Thread.sleep(forTimeInterval: 0.065)
+                            print ("num chars \(lastWordTyped?.characters.count)")
                             textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
                         }
                     } else {
