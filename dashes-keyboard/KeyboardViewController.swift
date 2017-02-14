@@ -40,42 +40,30 @@ class KeyboardViewController: UIInputViewController {
     var lastWordTyped: String? {
         if let leftwardContext = textDocumentProxy.documentContextBeforeInput, let rightwardContext = textDocumentProxy.documentContextAfterInput {
             
-            let leftwardLength = leftwardContext.characters.count
-            let rightwardLength = rightwardContext.characters.count
-            var leftwardComponents = [String]()
-            var rightwardComponents = [String]()
-            rightwardComponents = rightwardContext.components(separatedBy: alphanumerics.inverted)
-            leftwardComponents = leftwardContext.components(separatedBy: alphanumerics.inverted)
+            let leftwardComponents = leftwardContext.components(separatedBy: alphanumerics.inverted)
+            let rightwardComponents = rightwardContext.components(separatedBy: alphanumerics.inverted)
+            let foreEmpty = leftwardComponents[leftwardComponents.endIndex - 1].isEmpty
+            let aftEmpty = rightwardComponents[rightwardComponents.startIndex].isEmpty
             
-//            if leftwardLength >= 0 && rightwardLength >= 0 {
-//                if (leftwardContext.containsAlphabets && rightwardContext.containsAlphabets) {
-//                    leftwardComponents = leftwardContext.components(separatedBy: alphanumerics.inverted)
-//                    rightwardComponents = rightwardContext.components(separatedBy: alphanumerics.inverted)
-//                    print ("elward", leftwardComponents, leftwardComponents[leftwardComponents.endIndex - 1])
-//                    print ("arward", rightwardComponents, rightwardComponents[rightwardComponents.endIndex - 1])
-//                    return leftwardComponents[leftwardComponents.endIndex - 1] + rightwardComponents[rightwardComponents.endIndex - 1]
-//                }
-//            }
-            
-            if rightwardLength >= 0 && !rightwardComponents[rightwardComponents.startIndex].isEmpty {
+            if !aftEmpty && foreEmpty {
                 if rightwardContext.containsAlphabets {
-                    print (leftwardComponents, rightwardComponents, rightwardComponents[rightwardComponents.startIndex])
                     return rightwardComponents[rightwardComponents.startIndex]
                 }
-            } else {
+            }
+            
+            if !foreEmpty && aftEmpty {
                 if leftwardContext.containsAlphabets {
-                    print ("LEFT", rightwardComponents.count, leftwardComponents, rightwardComponents, leftwardComponents[leftwardComponents.startIndex])
                     return leftwardComponents[leftwardComponents.endIndex - 1]
                 }
             }
             
-            /* if leftwardLength >= 0 {
-                if (leftwardContext.containsAlphabets || rightwardContext.containsAlphabets) {
-                    
-                    
-                }
-            } */
+            if !foreEmpty && !aftEmpty {
+                return leftwardComponents[leftwardComponents.endIndex - 1] + rightwardComponents[rightwardComponents.startIndex]
+            }
             
+            if foreEmpty && aftEmpty {
+                return nil
+            }
             
         }
         return nil
