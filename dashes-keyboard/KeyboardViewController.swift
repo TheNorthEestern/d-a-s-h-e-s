@@ -15,6 +15,9 @@ class KeyboardViewController: UIInputViewController {
     var originalWord: String!
     var deleteButtonTimer: Timer?
     var previousTouchXPos: CGFloat = 0.0
+    // The distance the cursor must travel before it can successfully dashify a word.
+    var jumpDistance: Int!
+    
     
     @IBOutlet weak var forceCursorView: UIStackView!
     @IBOutlet weak var mainKeyGroup: UIStackView!
@@ -42,29 +45,45 @@ class KeyboardViewController: UIInputViewController {
             
             let leftwardComponents = leftwardContext.components(separatedBy: alphanumerics.inverted)
             let rightwardComponents = rightwardContext.components(separatedBy: alphanumerics.inverted)
-            let foreEmpty = leftwardComponents[leftwardComponents.endIndex - 1].isEmpty
-            let aftEmpty = rightwardComponents[rightwardComponents.startIndex].isEmpty
+            let fore = leftwardComponents[leftwardComponents.endIndex - 1]
+            let aft = rightwardComponents[rightwardComponents.startIndex]
             
-            if !aftEmpty && foreEmpty {
+            // If space after cursor isn't empty and space before it is
+            if !aft.isEmpty && fore.isEmpty {
                 if rightwardContext.containsAlphabets {
+                    jumpDistance = aft.characters.count
                     return rightwardComponents[rightwardComponents.startIndex]
                 }
             }
             
-            if !foreEmpty && aftEmpty {
+            // If space before cursor isn't empty and space after it is
+            if !fore.isEmpty && aft.isEmpty {
                 if leftwardContext.containsAlphabets {
+                    jumpDistance = 0
                     return leftwardComponents[leftwardComponents.endIndex - 1]
                 }
             }
             
-            if !foreEmpty && !aftEmpty {
+            // If space before the cursor isn't empty and space after the cursor isn't empty
+            if !fore.isEmpty && !aft.isEmpty {
+                jumpDistance = aft.characters.count
                 return leftwardComponents[leftwardComponents.endIndex - 1] + rightwardComponents[rightwardComponents.startIndex]
             }
             
-            if foreEmpty && aftEmpty {
+            // If space before the cursor is empty and space after the cursor is empty
+            if fore.isEmpty && aft.isEmpty {
                 return nil
             }
             
+        } else if let leftwardContext = textDocumentProxy.documentContextBeforeInput {
+            let leftwardComponents = leftwardContext.components(separatedBy: alphanumerics.inverted)
+            jumpDistance = 0
+            return leftwardComponents[leftwardComponents.endIndex - 1]
+            
+        } else if let rightwardContext = textDocumentProxy.documentContextAfterInput {
+            let rightwardComponents = rightwardContext.components(separatedBy: alphanumerics.inverted)
+            jumpDistance = rightwardComponents[rightwardComponents.startIndex].characters.count
+            return rightwardComponents[rightwardComponents.startIndex]
         }
         return nil
     }
@@ -73,30 +92,25 @@ class KeyboardViewController: UIInputViewController {
         let tdp = (textDocumentProxy as UIKeyInput)
         if let originalWord = lastWordTyped {
             self.originalWord = lastWordTyped
+            
+            if jumpDistance > 0 {
+                textDocumentProxy.adjustTextPosition(byCharacterOffset: jumpDistance)
+            }
+            
             for _ in (lastWordTyped?.characters.indices)! {
                 tdp.deleteBackward()
             }
-            tdp.insertText("\(StringManipulator.dashify(originalWord)) ")
-            undoButton.layer.opacity = 1.0
-            undoButton.isEnabled = true
+            
+            tdp.insertText("\(StringManipulator.dashify(originalWord, " "))")
         }
+        updatePreview()
     }
     
     @IBAction func undoDashify(_ sender: Any) {
-        for _ in 0..<((originalWord?.characters.count)! * 2) {
-            textDocumentProxy.deleteBackward()
-        }
-        (textDocumentProxy as UIKeyInput).insertText("\(originalWord!)")
-        undoButton.layer.opacity = 0.5
-        undoButton.isEnabled = false
+        textDocumentProxy.insertText(" ")
     }
     
     @IBAction func deleteText(timer: Timer) {
-        if let word = originalWord {
-            if (userHasBegunDeleting(the: word)) {
-                configureUndoButton()
-            }
-        }
         textDocumentProxy.deleteBackward()
         updatePreview()
     }
@@ -122,7 +136,6 @@ extension KeyboardViewController {
         view = objects[0] as? UIView
         
         configureDashifyButton()
-        configureUndoButton()
         configureDeleteButton()
       
         
@@ -178,21 +191,12 @@ extension KeyboardViewController {
         }
     }
     
-    func userHasBegunDeleting(the modifiedWord: String) -> Bool {
-        return StringManipulator.dashify(modifiedWord) == lastWordTyped!
-    }
-    
     func configureDeleteButton() {
         let deleteButtonLongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.deleteText))
         deleteButtonLongPressGestureRecognizer.minimumPressDuration = 0.5
         deleteButtonLongPressGestureRecognizer.numberOfTouchesRequired = 1
         deleteButtonLongPressGestureRecognizer.allowableMovement = 75
         deleteButton.addGestureRecognizer(deleteButtonLongPressGestureRecognizer)
-    }
-    
-    func configureUndoButton() {
-        undoButton.isEnabled = false
-        undoButton.layer.opacity = 0.5
     }
     
     func configureDashifyButton() {
@@ -202,7 +206,7 @@ extension KeyboardViewController {
     }
     
     func updatePreview() {
-        if let word = lastWordTyped, !(word.containsPunctuation) {
+        if let word = lastWordTyped, word.characters.count > 1 && !(word.containsPunctuation) {
                 dashifyButton.isEnabled = true
                 dashifyButton.setTitle("☞ \(StringManipulator.dashify(word))", for: .normal)
         } else {

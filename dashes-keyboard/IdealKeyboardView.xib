@@ -71,7 +71,7 @@
                                         <constraint firstAttribute="height" constant="75" id="Vqe-z5-kdQ"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
-                                    <state key="normal" title="↺">
+                                    <state key="normal" title="␣">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
