@@ -10,6 +10,7 @@ import UIKit
 
 class KeyboardViewController: UIInputViewController {
 
+    let alphanumerics: CharacterSet = CharacterSet.alphanumerics
     var customInterface : UIView!
     var originalWord: String!
     var deleteButtonTimer: Timer?
@@ -22,16 +23,60 @@ class KeyboardViewController: UIInputViewController {
     @IBOutlet var nextKeyboardButton: UIButton!
     @IBOutlet weak var dashifyButton: CircularButton!
     
-    var lastWordTyped: String? {
+    var t: String? {
         if let documentContext = textDocumentProxy.documentContextBeforeInput as String? {
             let length = documentContext.characters.count
             var components = [String]()
             if length > 0 {
                 if (documentContext.containsAlphabets) {
-                    components = documentContext.components(separatedBy: CharacterSet.alphanumerics.union(CharacterSet.punctuationCharacters).inverted)
+                    components = documentContext.components(separatedBy: alphanumerics.union(CharacterSet.punctuationCharacters).inverted)
                 }
                 return (components.count > 0) ? components[components.endIndex - 1] : nil
             }
+        }
+        return nil
+    }
+    
+    var lastWordTyped: String? {
+        if let leftwardContext = textDocumentProxy.documentContextBeforeInput, let rightwardContext = textDocumentProxy.documentContextAfterInput {
+            
+            let leftwardLength = leftwardContext.characters.count
+            let rightwardLength = rightwardContext.characters.count
+            var leftwardComponents = [String]()
+            var rightwardComponents = [String]()
+            rightwardComponents = rightwardContext.components(separatedBy: alphanumerics.inverted)
+            leftwardComponents = leftwardContext.components(separatedBy: alphanumerics.inverted)
+            
+//            if leftwardLength >= 0 && rightwardLength >= 0 {
+//                if (leftwardContext.containsAlphabets && rightwardContext.containsAlphabets) {
+//                    leftwardComponents = leftwardContext.components(separatedBy: alphanumerics.inverted)
+//                    rightwardComponents = rightwardContext.components(separatedBy: alphanumerics.inverted)
+//                    print ("elward", leftwardComponents, leftwardComponents[leftwardComponents.endIndex - 1])
+//                    print ("arward", rightwardComponents, rightwardComponents[rightwardComponents.endIndex - 1])
+//                    return leftwardComponents[leftwardComponents.endIndex - 1] + rightwardComponents[rightwardComponents.endIndex - 1]
+//                }
+//            }
+            
+            if rightwardLength >= 0 && !rightwardComponents[rightwardComponents.startIndex].isEmpty {
+                if rightwardContext.containsAlphabets {
+                    print (leftwardComponents, rightwardComponents, rightwardComponents[rightwardComponents.startIndex])
+                    return rightwardComponents[rightwardComponents.startIndex]
+                }
+            } else {
+                if leftwardContext.containsAlphabets {
+                    print ("LEFT", rightwardComponents.count, leftwardComponents, rightwardComponents, leftwardComponents[leftwardComponents.startIndex])
+                    return leftwardComponents[leftwardComponents.endIndex - 1]
+                }
+            }
+            
+            /* if leftwardLength >= 0 {
+                if (leftwardContext.containsAlphabets || rightwardContext.containsAlphabets) {
+                    
+                    
+                }
+            } */
+            
+            
         }
         return nil
     }
@@ -169,7 +214,7 @@ extension KeyboardViewController {
     }
     
     func updatePreview() {
-        if let word = lastWordTyped, word.characters.count > 1 && !(word.containsPunctuation) {
+        if let word = lastWordTyped, !(word.containsPunctuation) {
                 dashifyButton.isEnabled = true
                 dashifyButton.setTitle("☞ \(StringManipulator.dashify(word))", for: .normal)
         } else {
