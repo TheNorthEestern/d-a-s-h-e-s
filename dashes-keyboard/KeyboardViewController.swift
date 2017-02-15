@@ -88,9 +88,10 @@ class KeyboardViewController: UIInputViewController {
         return nil
     }
     
-    @IBAction func sendText(_ sender: Any) {
+    @IBAction func sendText(_ sender: UIButton) {
         let tdp = (textDocumentProxy as UIKeyInput)
-        if let originalWord = lastWordTyped {
+        if let originalWord = lastWordTyped, originalWord.characters.count > 1 {
+            print(originalWord)
             self.originalWord = lastWordTyped
             
             if jumpDistance > 0 {
@@ -101,13 +102,16 @@ class KeyboardViewController: UIInputViewController {
                 tdp.deleteBackward()
             }
             
-            tdp.insertText("\(StringManipulator.dashify(originalWord, " "))")
+            tdp.insertText("\(StringManipulator.dashify(originalWord))")
+        } else {
+            sender.shake()
         }
         updatePreview()
     }
     
     @IBAction func undoDashify(_ sender: Any) {
         textDocumentProxy.insertText(" ")
+        updatePreview()
     }
     
     @IBAction func deleteText(timer: Timer) {
@@ -211,7 +215,7 @@ extension KeyboardViewController {
                 dashifyButton.setTitle("☞ \(StringManipulator.dashify(word))", for: .normal)
         } else {
             dashifyButton.setTitle("⬆︎ select a word ⬆︎", for: .normal)
-            dashifyButton.isEnabled = false
+            // dashifyButton.isEnabled = false
             // dashifyButton.layer.backgroundColor = UIColor.clear.cgColor
         }
     }
