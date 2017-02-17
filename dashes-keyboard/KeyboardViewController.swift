@@ -12,7 +12,6 @@ class KeyboardViewController: UIInputViewController {
 
     let alphanumerics: CharacterSet = CharacterSet.alphanumerics
     var customInterface : UIView!
-    var originalWord: String!
     var deleteButtonTimer: Timer?
     var previousTouchXPos: CGFloat = 0.0
     // The distance the cursor must travel before it can successfully dashify a word.
@@ -48,39 +47,39 @@ class KeyboardViewController: UIInputViewController {
             let fore = leftwardComponents[leftwardComponents.endIndex - 1]
             let aft = rightwardComponents[rightwardComponents.startIndex]
             
-            // If space after cursor isn't empty and space before it is
+            // If space after cursor isn't empty and space before it is -> <cursor>dashes
             if !aft.isEmpty && fore.isEmpty {
                 if rightwardContext.containsAlphabets {
                     jumpDistance = aft.characters.count
                     return rightwardComponents[rightwardComponents.startIndex]
                 }
             }
-            
-            // If space before cursor isn't empty and space after it is
+            // If space before cursor isn't empty and space after it is -> dashes<cursor>
             if !fore.isEmpty && aft.isEmpty {
                 if leftwardContext.containsAlphabets {
                     jumpDistance = 0
                     return leftwardComponents[leftwardComponents.endIndex - 1]
                 }
             }
-            
-            // If space before the cursor isn't empty and space after the cursor isn't empty
+            // If space before the cursor isn't empty and space after the cursor isn't empty -> da<cursor>shes
             if !fore.isEmpty && !aft.isEmpty {
                 jumpDistance = aft.characters.count
                 return leftwardComponents[leftwardComponents.endIndex - 1] + rightwardComponents[rightwardComponents.startIndex]
             }
-            
-            // If space before the cursor is empty and space after the cursor is empty
+            // If space before the cursor is empty and space after the cursor is empty -> unlimited <cursor> power
             if fore.isEmpty && aft.isEmpty {
                 return nil
             }
-            
-        } else if let leftwardContext = textDocumentProxy.documentContextBeforeInput {
+        }
+        // If cursor is at the beginning of the input field. -> <field><cursor>dashes</field>
+        else if let leftwardContext = textDocumentProxy.documentContextBeforeInput {
             let leftwardComponents = leftwardContext.components(separatedBy: alphanumerics.inverted)
             jumpDistance = 0
             return leftwardComponents[leftwardComponents.endIndex - 1]
             
-        } else if let rightwardContext = textDocumentProxy.documentContextAfterInput {
+        }
+        // If cursor is at the end of the input field. -> <field>dashes<cursor></field>
+        else if let rightwardContext = textDocumentProxy.documentContextAfterInput {
             let rightwardComponents = rightwardContext.components(separatedBy: alphanumerics.inverted)
             jumpDistance = rightwardComponents[rightwardComponents.startIndex].characters.count
             return rightwardComponents[rightwardComponents.startIndex]
@@ -91,9 +90,6 @@ class KeyboardViewController: UIInputViewController {
     @IBAction func sendText(_ sender: UIButton) {
         let tdp = (textDocumentProxy as UIKeyInput)
         if let originalWord = lastWordTyped, originalWord.characters.count > 1 {
-            print(originalWord)
-            self.originalWord = lastWordTyped
-            
             if jumpDistance > 0 {
                 textDocumentProxy.adjustTextPosition(byCharacterOffset: jumpDistance)
             }
@@ -164,22 +160,19 @@ extension KeyboardViewController {
             
             if #available(iOS 9.0, *) {
                 if traitCollection.forceTouchCapability == .available {
-                    // let force = touch.force / touch.maximumPossibleForce
                     if touch.force >= (touch.maximumPossibleForce / 2) {
                         mainKeyGroup.isHidden = true
                         forceCursorView.isHidden = false
                         let increase = t.x - previousTouchXPos
                         let percentIncrease = increase / (previousTouchXPos * 100)
-                        print(percentIncrease)
-                        if let lwt = lastWordTyped {
-                            print(lwt)
-                        }
+                    
                         if percentIncrease < -0.0002 {
                             previousTouchXPos = t.x
                             Thread.sleep(forTimeInterval: 0.065)
                             print ("num chars \(lastWordTyped?.characters.count)")
                             textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
                         }
+                        
                         if percentIncrease > 0.0002 {
                             previousTouchXPos = t.x
                             Thread.sleep(forTimeInterval: 0.065)
