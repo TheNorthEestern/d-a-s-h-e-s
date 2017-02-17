@@ -15,8 +15,10 @@ import Foundation
 extension String {
     var containsAlphabets: Bool {
         return utf16.contains { (CharacterSet.alphanumerics as NSCharacterSet).characterIsMember($0) }
+               //|| utf16.contains { (CharacterSet.symbols as NSCharacterSet).characterIsMember($0) }
     }
-    var containsSymbols: Bool {
-        return utf16.contains { (CharacterSet.symbols as NSCharacterSet).characterIsMember($0) }
+    
+    var containsPunctuation: Bool {
+        return utf16.contains { (CharacterSet.punctuationCharacters as NSCharacterSet).characterIsMember($0) }
     }
 }

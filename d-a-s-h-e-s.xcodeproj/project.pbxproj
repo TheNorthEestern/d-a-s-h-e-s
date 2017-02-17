@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF3462241E53F34800347DFE /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3462231E53F34800347DFE /* UIView+Ext.swift */; };
 		AF4033C81E3FE8E60046C10B /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4033C71E3FE8E60046C10B /* String+Ext.swift */; };
 		AF4033CF1E3FEAAC0046C10B /* StringManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4033CE1E3FEAAC0046C10B /* StringManipulator.swift */; };
 		AF5019091E35C88600F4E3B6 /* ProperKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */; };
@@ -49,6 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AF3462231E53F34800347DFE /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		AF4033C71E3FE8E60046C10B /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		AF4033CE1E3FEAAC0046C10B /* StringManipulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringManipulator.swift; sourceTree = "<group>"; };
 		AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProperKeyboard.xib; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				AF4033C71E3FE8E60046C10B /* String+Ext.swift */,
+				AF3462231E53F34800347DFE /* UIView+Ext.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			files = (
 				AF4033C81E3FE8E60046C10B /* String+Ext.swift in Sources */,
 				AF4033CF1E3FEAAC0046C10B /* StringManipulator.swift in Sources */,
+				AF3462241E53F34800347DFE /* UIView+Ext.swift in Sources */,
 				AF8A84651E36EF4100A8E54A /* CircularButton.swift in Sources */,
 				AF8FF9A11E35B13B00392FA2 /* KeyboardViewController.swift in Sources */,
 			);
