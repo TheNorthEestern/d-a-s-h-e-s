@@ -10,8 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var bannerText: CLTypingLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        bannerText.charInterval = 0.5
+        bannerText.text = "hello"
+        // Thread.sleep(forTimeInterval: bannerText.charInterval * 5)
+        // bannerText.text = StringManipulator.dashify(bannerText.text)
         // Do any additional setup after loading the view, typically from a nib.
     }
 

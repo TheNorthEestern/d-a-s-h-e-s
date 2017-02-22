@@ -18,6 +18,7 @@ class KeyboardViewController: UIInputViewController {
     var jumpDistance: Int!
     
     
+    @IBOutlet weak var preferenceSwitch: UISwitch!
     @IBOutlet weak var forceCursorView: UIStackView!
     @IBOutlet weak var mainKeyGroup: UIStackView!
     @IBOutlet weak var undoButton: CircularButton!
@@ -97,8 +98,7 @@ class KeyboardViewController: UIInputViewController {
             for _ in (lastWordTyped?.characters.indices)! {
                 tdp.deleteBackward()
             }
-            
-            tdp.insertText("\(StringManipulator.dashify(originalWord))")
+            tdp.insertText("\(StringManipulator.dashify(originalWord, userChosenSeparator()))")
         } else {
             sender.shake()
         }
@@ -112,6 +112,10 @@ class KeyboardViewController: UIInputViewController {
     
     @IBAction func deleteText(timer: Timer) {
         textDocumentProxy.deleteBackward()
+        updatePreview()
+    }
+    
+    @IBAction func switchChanged(_ sender: Any) {
         updatePreview()
     }
 }
@@ -153,6 +157,10 @@ extension KeyboardViewController {
         nextKeyboardButton.setTitleColor(UIColor.black, for: [])
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        mainKeyGroup.isHidden = false
+        forceCursorView.isHidden = true
+    }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
@@ -179,9 +187,6 @@ extension KeyboardViewController {
                             print ("num chars \(lastWordTyped?.characters.count)")
                             textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
                         }
-                    } else {
-                        mainKeyGroup.isHidden = false
-                        forceCursorView.isHidden = true
                     }
                 }
             }
@@ -202,10 +207,14 @@ extension KeyboardViewController {
         dashifyButton.titleLabel?.lineBreakMode = .byClipping
     }
     
+    func userChosenSeparator() -> Character {
+        return preferenceSwitch.isOn ? " " : "-"
+    }
+    
     func updatePreview() {
         if let word = lastWordTyped, word.characters.count > 1 && !(word.containsPunctuation) {
                 dashifyButton.isEnabled = true
-                dashifyButton.setTitle("☞ \(StringManipulator.dashify(word))", for: .normal)
+                dashifyButton.setTitle("☞ \(StringManipulator.dashify(word, userChosenSeparator()))", for: .normal)
         } else {
             dashifyButton.setTitle("⬆︎ select a word ⬆︎", for: .normal)
             // dashifyButton.isEnabled = false

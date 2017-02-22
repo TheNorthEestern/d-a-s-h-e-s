@@ -12,6 +12,11 @@
 		AF4033CF1E3FEAAC0046C10B /* StringManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4033CE1E3FEAAC0046C10B /* StringManipulator.swift */; };
 		AF5019091E35C88600F4E3B6 /* ProperKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */; };
 		AF50190A1E35CE7E00F4E3B6 /* ProperKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */; };
+		AF66A6201E5D5681004A0F15 /* Heebo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF66A61F1E5D5681004A0F15 /* Heebo-Medium.ttf */; };
+		AF66A6221E5D5697004A0F15 /* Heebo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF66A6211E5D5697004A0F15 /* Heebo-Bold.ttf */; };
+		AF66A6241E5D5795004A0F15 /* Extrude.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF66A6231E5D5795004A0F15 /* Extrude.ttf */; };
+		AF66A6271E5D5883004A0F15 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF66A6261E5D5883004A0F15 /* CLTypingLabel.swift */; };
+		AF66A6281E5D6031004A0F15 /* StringManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4033CE1E3FEAAC0046C10B /* StringManipulator.swift */; };
 		AF8A84611E36EE5200A8E54A /* IdealKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8A84601E36EE5200A8E54A /* IdealKeyboardView.xib */; };
 		AF8A84621E36EE5200A8E54A /* IdealKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8A84601E36EE5200A8E54A /* IdealKeyboardView.xib */; };
 		AF8A84641E36EF4100A8E54A /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8A84631E36EF4100A8E54A /* CircularButton.swift */; };
@@ -54,6 +59,10 @@
 		AF4033C71E3FE8E60046C10B /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		AF4033CE1E3FEAAC0046C10B /* StringManipulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringManipulator.swift; sourceTree = "<group>"; };
 		AF5019081E35C88600F4E3B6 /* ProperKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProperKeyboard.xib; sourceTree = "<group>"; };
+		AF66A61F1E5D5681004A0F15 /* Heebo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Heebo-Medium.ttf"; path = "../../../../Library/Fonts/Heebo-Medium.ttf"; sourceTree = "<group>"; };
+		AF66A6211E5D5697004A0F15 /* Heebo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Heebo-Bold.ttf"; path = "../../../../Library/Fonts/Heebo-Bold.ttf"; sourceTree = "<group>"; };
+		AF66A6231E5D5795004A0F15 /* Extrude.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Extrude.ttf; path = ../../../../Library/Fonts/Extrude.ttf; sourceTree = "<group>"; };
+		AF66A6261E5D5883004A0F15 /* CLTypingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
 		AF8A84601E36EE5200A8E54A /* IdealKeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdealKeyboardView.xib; sourceTree = "<group>"; };
 		AF8A84631E36EF4100A8E54A /* CircularButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		AF8FF9851E35B10300392FA2 /* d-a-s-h-e-s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "d-a-s-h-e-s.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +137,24 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		AF66A61E1E5D5657004A0F15 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AF66A61F1E5D5681004A0F15 /* Heebo-Medium.ttf */,
+				AF66A6231E5D5795004A0F15 /* Extrude.ttf */,
+				AF66A6211E5D5697004A0F15 /* Heebo-Bold.ttf */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
+		AF66A6251E5D586B004A0F15 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				AF66A6261E5D5883004A0F15 /* CLTypingLabel.swift */,
+			);
+			name = support;
+			sourceTree = "<group>";
+		};
 		AF8FF97C1E35B10300392FA2 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +176,8 @@
 		AF8FF9871E35B10300392FA2 /* d-a-s-h-e-s */ = {
 			isa = PBXGroup;
 			children = (
+				AF66A6251E5D586B004A0F15 /* support */,
+				AF66A61E1E5D5657004A0F15 /* fonts */,
 				AF8FF9881E35B10300392FA2 /* AppDelegate.swift */,
 				AF8FF98A1E35B10300392FA2 /* ViewController.swift */,
 				AF8FF98C1E35B10300392FA2 /* Main.storyboard */,
@@ -257,9 +286,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF66A6241E5D5795004A0F15 /* Extrude.ttf in Resources */,
 				AF5019091E35C88600F4E3B6 /* ProperKeyboard.xib in Resources */,
 				AF8FF9931E35B10300392FA2 /* LaunchScreen.storyboard in Resources */,
+				AF66A6221E5D5697004A0F15 /* Heebo-Bold.ttf in Resources */,
 				AF8A84611E36EE5200A8E54A /* IdealKeyboardView.xib in Resources */,
+				AF66A6201E5D5681004A0F15 /* Heebo-Medium.ttf in Resources */,
 				AF8FF9901E35B10300392FA2 /* Assets.xcassets in Resources */,
 				AF8FF98E1E35B10300392FA2 /* Main.storyboard in Resources */,
 			);
@@ -281,7 +313,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF66A6271E5D5883004A0F15 /* CLTypingLabel.swift in Sources */,
 				AF8FF98B1E35B10300392FA2 /* ViewController.swift in Sources */,
+				AF66A6281E5D6031004A0F15 /* StringManipulator.swift in Sources */,
 				AF8FF9891E35B10300392FA2 /* AppDelegate.swift in Sources */,
 				AF8A84641E36EF4100A8E54A /* CircularButton.swift in Sources */,
 			);
