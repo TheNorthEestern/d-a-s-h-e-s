@@ -475,7 +475,7 @@
 				DEVELOPMENT_TEAM = ND43N89R4B;
 				INFOPLIST_FILE = "d-a-s-h-e-s/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.studentdriver.dashes";
+				PRODUCT_BUNDLE_IDENTIFIER = io.studentdriver.dashes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -492,7 +492,7 @@
 				DEVELOPMENT_TEAM = ND43N89R4B;
 				INFOPLIST_FILE = "d-a-s-h-e-s/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.studentdriver.dashes";
+				PRODUCT_BUNDLE_IDENTIFIER = io.studentdriver.dashes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

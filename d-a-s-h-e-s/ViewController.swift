@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bannerText.charInterval = 0.2
-        bannerText.text = "h-e-l-l-o!"
+        bannerText.text = "hello "
         // Thread.sleep(forTimeInterval: bannerText.charInterval * 5)
         // bannerText.text = StringManipulator.dashify(bannerText.text)
         // Do any additional setup after loading the view, typically from a nib.

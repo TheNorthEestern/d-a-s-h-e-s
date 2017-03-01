@@ -75,7 +75,10 @@ enum CLTypingLabelKind {
             stoppedSubstring = ""
             
             let val = newValue ?? ""
-            setTextWithTypingAnimation(val, charInterval, true)
+            setTextWithTypingAnimation(val, charInterval, true, {
+                (stoppedSubString) -> String in
+                return StringManipulator.dashify(stoppedSubString)
+            })
             
             kind = .text
         }
@@ -104,6 +107,10 @@ enum CLTypingLabelKind {
         }
     }
     
+    open func performCompletionAction() {
+        super.text = StringManipulator.dashify(self.text)
+    }
+    
     // MARK: -
     // MARK: Stop Typing Animation
     
@@ -129,7 +136,10 @@ enum CLTypingLabelKind {
         
         switch kind {
         case .text:
-            setTextWithTypingAnimation(stoppedSubstring, charInterval, false)
+            setTextWithTypingAnimation(stoppedSubstring, charInterval, false, {
+                (stoppedSubString) -> String in
+                return StringManipulator.dashify(stoppedSubString)
+            })
         case .attributedText:
             let stoppedAttributedText = NSAttributedString(string: self.stoppedSubstring, attributes: attributes)
             setAttributedTextWithTypingAnimation(stoppedAttributedText, charInterval, false, attributes)
@@ -174,7 +184,7 @@ enum CLTypingLabelKind {
         }
     }
     
-    fileprivate func setTextWithTypingAnimation(_ typedText: String, _ charInterval: TimeInterval, _ initial: Bool) {
+    fileprivate func setTextWithTypingAnimation(_ typedText: String, _ charInterval: TimeInterval, _ initial: Bool, _ completion: @escaping (_ myText: String) -> String) {
         if initial == true {
             super.text = ""
         }
@@ -198,6 +208,12 @@ enum CLTypingLabelKind {
                     
                     if self.centerText == true {
                         self.sizeToFit()
+                    }
+                    
+                    if index == typedText.characters.count - 1 {
+                        super.text = self.text
+                        Thread.sleep(forTimeInterval: charInterval * 2)
+                        super.text = completion(self.text.replacingOccurrences(of: " ", with: "")) + "!"
                     }
                 }
                 
