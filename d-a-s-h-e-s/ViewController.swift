@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var bannerText: CLTypingLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        bannerText.charInterval = 0.2
+        bannerText.charInterval = 0.4
         bannerText.text = "hello "
         // Thread.sleep(forTimeInterval: bannerText.charInterval * 5)
         // bannerText.text = StringManipulator.dashify(bannerText.text)

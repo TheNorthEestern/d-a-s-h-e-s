@@ -11,6 +11,7 @@ import UIKit
 class KeyboardViewController: UIInputViewController {
 
     let alphanumerics: CharacterSet = CharacterSet.alphanumerics
+    let userSeparatorPreference = "userSeraratorPreference"
     var customInterface : UIView!
     var deleteButtonTimer: Timer?
     var previousTouchXPos: CGFloat = 0.0
@@ -115,7 +116,8 @@ class KeyboardViewController: UIInputViewController {
         updatePreview()
     }
     
-    @IBAction func switchChanged(_ sender: Any) {
+    @IBAction func switchChanged(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: userSeparatorPreference)
         updatePreview()
     }
 }
@@ -127,7 +129,9 @@ extension KeyboardViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("called view did appear")
+        
+        preferenceSwitch.isOn = UserDefaults.standard.bool(forKey: userSeparatorPreference)
+        
         updatePreview()
     }
     
