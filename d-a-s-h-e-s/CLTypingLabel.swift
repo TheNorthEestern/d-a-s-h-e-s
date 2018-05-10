@@ -57,7 +57,7 @@ enum CLTypingLabelKind {
     fileprivate var typingStopped: Bool = false
     fileprivate var typingOver: Bool = true
     fileprivate var stoppedSubstring: String = ""
-    fileprivate var attributes: [String: AnyObject] = [:]
+    fileprivate var attributes: [NSAttributedStringKey: Any]?
     
     override open var text: String! {
         get {
@@ -100,8 +100,8 @@ enum CLTypingLabelKind {
             stoppedSubstring = ""
             
             let val = newValue ?? NSAttributedString()
-            attributes = newValue.attributes(at: 0, effectiveRange: nil) as [String : AnyObject]
-            setAttributedTextWithTypingAnimation(val, charInterval, true, attributes)
+            attributes = newValue.attributes(at: 0, effectiveRange: nil)
+            setAttributedTextWithTypingAnimation(val, charInterval, true, attributes!)
             
             kind = .attributedText
         }
@@ -141,15 +141,15 @@ enum CLTypingLabelKind {
                 return StringManipulator.dashify(stoppedSubString)
             })
         case .attributedText:
-            let stoppedAttributedText = NSAttributedString(string: self.stoppedSubstring, attributes: attributes)
-            setAttributedTextWithTypingAnimation(stoppedAttributedText, charInterval, false, attributes)
+            let stoppedAttributedText = NSAttributedString(string: self.stoppedSubstring, attributes: self.attributes)
+            setAttributedTextWithTypingAnimation(stoppedAttributedText, charInterval, false, attributes!)
         }
     }
     
     // MARK: -
     // MARK: Set Text & Attributed Text
     
-    fileprivate func setAttributedTextWithTypingAnimation(_ typedAttributedText: NSAttributedString, _ charInterval: TimeInterval, _ initial: Bool, _ attributes: Dictionary<String, AnyObject>) {
+    fileprivate func setAttributedTextWithTypingAnimation(_ typedAttributedText: NSAttributedString, _ charInterval: TimeInterval, _ initial: Bool, _ attributes: Dictionary<NSAttributedStringKey, Any>) {
         if initial == true {
             super.attributedText = NSAttributedString()
         }
@@ -157,14 +157,14 @@ enum CLTypingLabelKind {
         let dispatchedTypingID = currentTypingID
         
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
-            for (index, char) in typedAttributedText.string.characters.enumerated() {
+            for (index, char) in typedAttributedText.string.enumerated() {
                 guard self.currentTypingID == dispatchedTypingID else {
                     return
                 }
                 
                 guard self.typingStopped == false else {
-                    let position = typedAttributedText.string.characters.index(typedAttributedText.string.startIndex, offsetBy: index)
-                    self.stoppedSubstring = typedAttributedText.string.substring(from: position)
+                    let position = typedAttributedText.string.index(typedAttributedText.string.startIndex, offsetBy: index)
+                  self.stoppedSubstring = String(typedAttributedText.string[position...])
                     return
                 }
                 
@@ -192,14 +192,14 @@ enum CLTypingLabelKind {
         let dispatchedTypingID = currentTypingID
         
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
-            for (index, char) in typedText.characters.enumerated() {
+            for (index, char) in typedText.enumerated() {
                 guard self.currentTypingID == dispatchedTypingID else {
                     return
                 }
                 
                 guard self.typingStopped == false else {
-                    let position = typedText.characters.index(typedText.startIndex, offsetBy: index)
-                    self.stoppedSubstring = typedText.substring(from: position)
+                    let position = typedText.index(typedText.startIndex, offsetBy: index)
+                    self.stoppedSubstring = String(typedText[position...])
                     return
                 }
                 
@@ -210,7 +210,7 @@ enum CLTypingLabelKind {
                         self.sizeToFit()
                     }
                     
-                    if index == typedText.characters.count - 1 {
+                    if index == typedText.count - 1 {
                         super.text = self.text
                         Thread.sleep(forTimeInterval: charInterval * 2)
                         super.text = completion(self.text.replacingOccurrences(of: " ", with: "")) + "!"
