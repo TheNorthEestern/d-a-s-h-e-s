@@ -12,9 +12,9 @@ class StringManipulator {
     public static func dashify(_ text: String,_ separator: Character = "-") -> String
     {
         var dashedText = [String]()
-        for (index, char) in text.characters.enumerated() {
+        for (index, char) in text.enumerated() {
             dashedText.append("\(char)")
-            if index != text.characters.count - 1 {
+            if index != text.count - 1 {
                 dashedText.append("\(separator)")
             }
         }

@@ -27,7 +27,7 @@ class KeyboardViewController: UIInputViewController {
     
     var t: String? {
         if let documentContext = textDocumentProxy.documentContextBeforeInput as String? {
-            let length = documentContext.characters.count
+            let length = documentContext.count
             var components = [String]()
             if length > 0 {
                 if (documentContext.containsAlphabets) {
@@ -50,7 +50,7 @@ class KeyboardViewController: UIInputViewController {
             // If space after cursor isn't empty and space before it is -> <cursor>dashes
             if !aft.isEmpty && fore.isEmpty {
                 if rightwardContext.containsAlphabets {
-                    jumpDistance = aft.characters.count
+                    jumpDistance = aft.count
                     return rightwardComponents[rightwardComponents.startIndex]
                 }
             }
@@ -63,7 +63,7 @@ class KeyboardViewController: UIInputViewController {
             }
             // If space before the cursor isn't empty and space after the cursor isn't empty -> da<cursor>shes
             if !fore.isEmpty && !aft.isEmpty {
-                jumpDistance = aft.characters.count
+                jumpDistance = aft.count
                 return leftwardComponents[leftwardComponents.endIndex - 1] + rightwardComponents[rightwardComponents.startIndex]
             }
             // If space before the cursor is empty and space after the cursor is empty -> unlimited <cursor> power
@@ -81,7 +81,7 @@ class KeyboardViewController: UIInputViewController {
         // If cursor is at the end of the input field. -> <field>dashes<cursor></field>
         else if let rightwardContext = textDocumentProxy.documentContextAfterInput {
             let rightwardComponents = rightwardContext.components(separatedBy: alphanumerics.inverted)
-            jumpDistance = rightwardComponents[rightwardComponents.startIndex].characters.count
+            jumpDistance = rightwardComponents[rightwardComponents.startIndex].count
             return rightwardComponents[rightwardComponents.startIndex]
         }
         return nil
@@ -89,12 +89,12 @@ class KeyboardViewController: UIInputViewController {
     
     @IBAction func sendText(_ sender: UIButton) {
         let tdp = (textDocumentProxy as UIKeyInput)
-        if let originalWord = lastWordTyped, originalWord.characters.count > 1 {
+        if let originalWord = lastWordTyped, originalWord.count > 1 {
             if jumpDistance > 0 {
                 textDocumentProxy.adjustTextPosition(byCharacterOffset: jumpDistance)
             }
-            
-            for _ in (lastWordTyped?.characters.indices)! {
+          
+            for _ in (lastWordTyped?.indices)! {
                 tdp.deleteBackward()
             }
             
@@ -169,14 +169,12 @@ extension KeyboardViewController {
                         if percentIncrease < -0.0002 {
                             previousTouchXPos = t.x
                             Thread.sleep(forTimeInterval: 0.065)
-                            print ("num chars \(lastWordTyped?.characters.count)")
                             textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
                         }
                         
                         if percentIncrease > 0.0002 {
                             previousTouchXPos = t.x
                             Thread.sleep(forTimeInterval: 0.065)
-                            print ("num chars \(lastWordTyped?.characters.count)")
                             textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
                         }
                     } else {
@@ -203,7 +201,7 @@ extension KeyboardViewController {
     }
     
     func updatePreview() {
-        if let word = lastWordTyped, word.characters.count > 1 && !(word.containsPunctuation) {
+        if let word = lastWordTyped, word.count > 1 && !(word.containsPunctuation) {
                 dashifyButton.isEnabled = true
                 dashifyButton.setTitle("☞ \(StringManipulator.dashify(word))", for: .normal)
         } else {
