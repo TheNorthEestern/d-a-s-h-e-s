@@ -11,6 +11,7 @@ import UIKit
 class KeyboardViewController: UIInputViewController {
 
     let alphanumerics: CharacterSet = CharacterSet.alphanumerics
+    let userSeparatorPreference = "userSeraratorPreference"
     var customInterface : UIView!
     var deleteButtonTimer: Timer?
     var previousTouchXPos: CGFloat = 0.0
@@ -18,6 +19,7 @@ class KeyboardViewController: UIInputViewController {
     var jumpDistance: Int!
     
     
+    @IBOutlet weak var preferenceSwitch: UISwitch!
     @IBOutlet weak var forceCursorView: UIStackView!
     @IBOutlet weak var mainKeyGroup: UIStackView!
     @IBOutlet weak var undoButton: CircularButton!
@@ -97,8 +99,7 @@ class KeyboardViewController: UIInputViewController {
             for _ in (lastWordTyped?.indices)! {
                 tdp.deleteBackward()
             }
-            
-            tdp.insertText("\(StringManipulator.dashify(originalWord))")
+            tdp.insertText("\(StringManipulator.dashify(originalWord, userChosenSeparator()))")
         } else {
             sender.shake()
         }
@@ -114,6 +115,11 @@ class KeyboardViewController: UIInputViewController {
         textDocumentProxy.deleteBackward()
         updatePreview()
     }
+    
+    @IBAction func switchChanged(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: userSeparatorPreference)
+        updatePreview()
+    }
 }
 
 extension KeyboardViewController {
@@ -123,7 +129,9 @@ extension KeyboardViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("called view did appear")
+        
+        preferenceSwitch.isOn = UserDefaults.standard.bool(forKey: userSeparatorPreference)
+        
         updatePreview()
     }
     
@@ -153,6 +161,10 @@ extension KeyboardViewController {
         nextKeyboardButton.setTitleColor(UIColor.black, for: [])
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        mainKeyGroup.isHidden = false
+        forceCursorView.isHidden = true
+    }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
@@ -177,9 +189,6 @@ extension KeyboardViewController {
                             Thread.sleep(forTimeInterval: 0.065)
                             textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
                         }
-                    } else {
-                        mainKeyGroup.isHidden = false
-                        forceCursorView.isHidden = true
                     }
                 }
             }
@@ -200,10 +209,14 @@ extension KeyboardViewController {
         dashifyButton.titleLabel?.lineBreakMode = .byClipping
     }
     
+    func userChosenSeparator() -> Character {
+        return preferenceSwitch.isOn ? " " : "-"
+    }
+    
     func updatePreview() {
         if let word = lastWordTyped, word.count > 1 && !(word.containsPunctuation) {
                 dashifyButton.isEnabled = true
-                dashifyButton.setTitle("☞ \(StringManipulator.dashify(word))", for: .normal)
+                dashifyButton.setTitle("☞ \(StringManipulator.dashify(word, userChosenSeparator()))", for: .normal)
         } else {
             dashifyButton.setTitle("⬆︎ select a word ⬆︎", for: .normal)
             // dashifyButton.isEnabled = false
