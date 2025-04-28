@@ -44,10 +44,12 @@ extension CircularButton {
 extension PaddedCircularButton {
     override func setupView() {
         super.setupView()
-        self.contentEdgeInsets = UIEdgeInsetsMake(15.0,
-                                                  balancedContentEdgeInset,
-                                                  balancedContentEdgeInset,
-                                                  balancedContentEdgeInset)
+      var config = UIButton.Configuration.plain()
+                  let inset = balancedContentEdgeInset
+                  config.contentInsets = NSDirectionalEdgeInsets(top: 15.0,
+                                                                leading: inset,
+                                                                bottom: inset,
+                                                                trailing: inset)
     }
 }
 
